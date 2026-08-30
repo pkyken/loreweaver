@@ -1,4 +1,4 @@
 {
-  "hub.npc.unknown_name": "Unknown NPC",
-  "hub.turn.queued": "⏳ A turn is already running at this table. Your input is queued and will run as soon as it is your turn."
+  "hub.npc.unknown_name": "不明なNPC",
+  "hub.turn.queued": "⏳ この卓では現在別のターンを処理中です。入力は待機列に追加され、あなたの順番になり次第実行されます。"
 }

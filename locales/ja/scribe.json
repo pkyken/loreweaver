@@ -1,4 +1,4 @@
 {
-  "scribe.whisper.npc_overreach": "Observation: {npc} may have spoken past their recorded knowledge — \"{quote}\" ({fact}). Your call whether it needs smoothing over.",
-  "scribe.whisper.unrolled_check": "Observation: this turn seems to have settled a {skill} question without a roll — \"{quote}\". Your call."
+  "scribe.whisper.npc_overreach": "観察: {npc} が記録上は知らないはずの情報まで話した可能性があります — 「{quote}」（{fact}）。辻褄を整える必要があるかはKPが判断してください。",
+  "scribe.whisper.unrolled_check": "観察: このターンでは{skill}に関する問題が判定なしで解決されたようです — 「{quote}」。対応するかはKPが判断してください。"
 }

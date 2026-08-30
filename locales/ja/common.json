@@ -1,8 +1,8 @@
 {
-  "common.yes": "Yes",
-  "common.no": "No",
-  "common.unknown": "Unknown",
-  "common.none": "None",
-  "common.list_separator": ", ",
-  "character.default_name": "Unnamed"
+  "common.yes": "はい",
+  "common.no": "いいえ",
+  "common.unknown": "不明",
+  "common.none": "なし",
+  "common.list_separator": "、",
+  "character.default_name": "名前未設定"
 }

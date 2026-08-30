@@ -1,4 +1,4 @@
 {
-  "ops.censor.mask": "[filtered]",
-  "ops.sanitizer.url": "[link: {url}]"
+  "ops.censor.mask": "[フィルター済み]",
+  "ops.sanitizer.url": "[リンク: {url}]"
 }

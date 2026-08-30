@@ -1,6 +1,6 @@
 {
   "dice.result": "{expression} = {roll_str} = {total}",
-  "dice.result_simple": "Result: {total}",
-  "dice.error.invalid_expression": "Invalid dice expression: {expression}",
-  "dice.error.invalid_repeat_times": "Repeat count must be between 1 and 20, got {times}"
+  "dice.result_simple": "結果: {total}",
+  "dice.error.invalid_expression": "無効なダイス式です: {expression}",
+  "dice.error.invalid_repeat_times": "繰り返し回数は1～20の範囲で指定してください。指定値: {times}"
 }
