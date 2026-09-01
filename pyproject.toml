@@ -108,6 +108,7 @@ packages = [
     "locales",
     "locales.en",
     "locales.zh",
+    "locales.ja",
     "assets",
     "assets.vendor",
 ]
@@ -117,6 +118,7 @@ py-modules = ["app", "_lw_version"]
 rulepacks = ["*.yaml"]
 "locales.en" = ["*.json"]
 "locales.zh" = ["*.json"]
+"locales.ja" = ["*.json"]
 # core/ejs_full.py loads the vendored EJS + lodash sources at engine start.
 "assets.vendor" = ["*.js", "*LICENSE*"]
 # adapters/cli/demo.py loads this offline-demo module text via a
