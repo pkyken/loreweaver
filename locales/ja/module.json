@@ -1,5 +1,5 @@
 {
-  "module.analysis_no_json_found": "No JSON object could be parsed from the LLM's module-analysis response.",
-  "module.analysis_prompt": "You are a professional TRPG module analysis expert. Carefully read the full module text below and extract every key detail into the required JSON structure.\n\n[Module Name] {doc_name}\n\n[Module Full Text]\n{full_text}\n\n[Output Requirements]\nRespond with strict JSON using exactly the following fields:\n\n{schema}\n\n[Notes]\n- Cover every major scene, NPC, and clue in the module - do not omit any.\n- \"description\" fields must only contain information players can directly perceive.\n- \"keeper_notes\" and \"secret\" fields contain information that must never be revealed to players.\n- List \"timeline\" entries in chronological order.\n- The response must be valid JSON; do not wrap it in markdown code fences.\n- If a field has no content, use an empty array [] or an empty string \"\".\n\nRespond with the JSON only, nothing else.",
-  "module.default_document_name": "Untitled Module"
+  "module.analysis_no_json_found": "LLMのシナリオ解析応答からJSONオブジェクトを読み取れませんでした。",
+  "module.analysis_prompt": "あなたはTRPGシナリオ解析の専門家です。以下のシナリオ全文を注意深く読み、重要な情報を漏れなく指定されたJSON構造へ抽出してください。\n\n【シナリオ名】{doc_name}\n\n【シナリオ全文】\n{full_text}\n\n【出力要件】\n次のフィールドを正確に使用した厳密なJSONで回答してください。\n\n{schema}\n\n【注意事項】\n- シナリオ内の主要な場面、NPC、手掛かりをすべて網羅し、省略しないでください。\n- \"description\"には、プレイヤーが直接知覚できる情報だけを記載してください。\n- \"keeper_notes\"と\"secret\"には、プレイヤーへ決して公開してはならない情報を記載してください。\n- \"timeline\"は時系列順に並べてください。\n- 応答は有効なJSONにし、Markdownのコードフェンスで囲まないでください。\n- 内容がないフィールドには、空配列[]または空文字列\"\"を使用してください。\n\nJSONだけを出力し、それ以外は何も記載しないでください。",
+  "module.default_document_name": "無題のシナリオ"
 }
