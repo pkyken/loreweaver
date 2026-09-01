@@ -11,8 +11,8 @@ from __future__ import annotations
 from typing import Any
 
 from gateway.commands.rooms import _is_keeper
-from gateway.commands.router import _COMMAND_TOKEN_RE
 from gateway.commands.router import CommandRouter as _CoreCommandRouter
+from gateway.commands.router import _COMMAND_TOKEN_RE
 from gateway.commands.types import CommandCtx, CommandSpec
 from infra.i18n import get_i18n
 
