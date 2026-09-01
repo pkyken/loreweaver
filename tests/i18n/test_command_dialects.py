@@ -73,6 +73,17 @@ async def test_japanese_help_prefers_japanese_command_names_for_cli_keeper():
     assert ".モデル" in result
 
 
+async def test_japanese_language_command_accepts_ja_and_language_name():
+    services = _services()
+    router = CommandRouter(services)
+    ctx = AgentCtx(chat_key="cli:dm:language", user_id="u1", locale="ja-JP")
+
+    result = await router.dispatch(ctx, ".言語 日本語")
+
+    assert result == "ルームの言語を日本語に設定しました。"
+    assert ctx.locale == "ja"
+
+
 def test_slash_definitions_include_core_commands_and_valid_names():
     router = CommandRouter(_services())
     definitions = router.slash_definitions("en")
