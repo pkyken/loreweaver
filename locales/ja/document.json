@@ -1,12 +1,12 @@
 {
-  "document.error.unsupported_format": "Unsupported file format: {extension}",
-  "document.error.txt_parse_failed": "Failed to parse TXT file: {error}",
-  "document.error.pdf_unavailable": "PDF processing is unavailable; please install the `pypdf` library.",
-  "document.error.pdf_parse_failed": "Failed to parse PDF file: {error}",
-  "document.error.docx_unavailable": "Word document processing is unavailable; please install the `python-docx` library.",
-  "document.error.docx_parse_failed": "Failed to parse Word document: {error}",
-  "document.context.chunk_header": "\n--- From document: {filename} ---\n{text}\n",
-  "document.answer.no_context": "Sorry, I couldn't find any relevant information in your uploaded documents to answer this question.",
-  "document.answer.no_llm": "No LLM is configured, so I can't answer questions from documents right now.",
-  "document.answer.prompt": "Answer the question based on the following document content. If the document does not contain relevant information, say so explicitly.\n\nQuestion: {question}\n\nRelevant document content:\n{context}\n\nPlease answer the question based on the above document content; if the information is insufficient, say so."
+  "document.error.unsupported_format": "対応していないファイル形式です: {extension}",
+  "document.error.txt_parse_failed": "TXTファイルを解析できませんでした: {error}",
+  "document.error.pdf_unavailable": "PDF処理を利用できません。`pypdf`ライブラリをインストールしてください。",
+  "document.error.pdf_parse_failed": "PDFファイルを解析できませんでした: {error}",
+  "document.error.docx_unavailable": "Word文書の処理を利用できません。`python-docx`ライブラリをインストールしてください。",
+  "document.error.docx_parse_failed": "Word文書を解析できませんでした: {error}",
+  "document.context.chunk_header": "\n--- 文書: {filename} ---\n{text}\n",
+  "document.answer.no_context": "アップロードされた文書から、この質問に答えられる関連情報を見つけられませんでした。",
+  "document.answer.no_llm": "LLMが設定されていないため、現在は文書に関する質問へ回答できません。",
+  "document.answer.prompt": "次の文書内容に基づいて質問へ回答してください。文書内に関連情報がない場合は、その旨を明確に伝えてください。\n\n質問: {question}\n\n関連する文書内容:\n{context}\n\n上記の文書内容に基づいて回答し、情報が不十分な場合はその旨を伝えてください。"
 }
