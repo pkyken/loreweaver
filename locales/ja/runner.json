@@ -1,12 +1,12 @@
 {
-  "runner.attachment_input": "Shared attachment(s): {names}",
-  "runner.attachment_unsupported": "That attachment type or size is not supported.",
-  "runner.throttled": "Too many messages too quickly. Please slow down.",
-  "runner.error": "Something went wrong handling that. Please try again.",
-  "runner.private_reply_unavailable": "Use this command in a private chat with the bot.",
-  "runner.welcome": "Welcome to Loreweaver. Create a character, open the table panel, or view all commands.",
-  "runner.welcome.create": "Create character",
-  "runner.welcome.help": "Help",
-  "runner.welcome.panel": "Table panel",
-  "runner.welcome.sheet": "My character"
+  "runner.attachment_input": "共有された添付ファイル: {names}",
+  "runner.attachment_unsupported": "この添付ファイルの形式またはサイズには対応していません。",
+  "runner.throttled": "短時間に送信されたメッセージが多すぎます。少し間を空けてください。",
+  "runner.error": "処理中に問題が発生しました。もう一度お試しください。",
+  "runner.private_reply_unavailable": "このコマンドはBotとのプライベートチャットで使用してください。",
+  "runner.welcome": "Loreweaverへようこそ。キャラクターを作成するか、卓パネルまたはコマンド一覧を開いてください。",
+  "runner.welcome.create": "キャラクター作成",
+  "runner.welcome.help": "ヘルプ",
+  "runner.welcome.panel": "卓パネル",
+  "runner.welcome.sheet": "マイキャラクター"
 }
