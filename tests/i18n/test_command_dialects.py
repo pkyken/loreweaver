@@ -55,7 +55,7 @@ def test_japanese_aliases_resolve_to_the_expected_canonical_commands():
             assert args == "sample"
 
 
-async def test_japanese_help_prefers_japanese_command_names():
+async def test_japanese_help_prefers_japanese_command_names_for_cli_keeper():
     router = CommandRouter(_services())
     ja = AgentCtx(chat_key="cli:dm:t", user_id="u1", locale="ja-JP")
 
@@ -67,7 +67,10 @@ async def test_japanese_help_prefers_japanese_command_names():
     assert ".判定" in result
     assert ".キャラシート" in result
     assert ".ヘルプ" in result
-    assert "KPには卓を運営するための追加コマンドがあります。" in result
+    # The local CLI transport is intentionally an auto-master surface, so its
+    # help includes the keeper section rather than the non-keeper hint.
+    assert "KP用:" in result
+    assert ".モデル" in result
 
 
 def test_slash_definitions_include_core_commands_and_valid_names():
