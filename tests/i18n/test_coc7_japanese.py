@@ -1,4 +1,4 @@
-from core.rulepacks import load_rulepack
+from core.rulepacks import load_rulepack, pack_declaring_command
 
 
 def test_coc7_japanese_pack_preserves_base_and_resolves_japanese_terms():
@@ -43,6 +43,19 @@ def test_coc7_japanese_pack_exposes_localized_labels_and_commands():
     assert pack.commands["成長判定"].tool == "skill_growth"
     assert pack.commands["幸運消費"].tool == "spend_luck"
     assert pack.commands["不定の狂気"].args == {"table": "indefinite"}
+
+
+def test_coc7_japanese_pack_does_not_capture_base_character_commands():
+    japanese = load_rulepack("coc7-ja")
+    base = load_rulepack("coc7")
+
+    assert "coc" not in japanese.commands
+    assert "coc7" not in japanese.commands
+    assert base.commands["coc"].action == "make_char"
+    assert base.commands["coc7"].action == "make_char"
+    assert pack_declaring_command("coc", "make_char") is base
+    assert pack_declaring_command("coc7", "make_char") is base
+    assert pack_declaring_command("クトゥルフ", "make_char") is japanese
 
 
 def test_coc7_japanese_madness_tables_are_japanese():
