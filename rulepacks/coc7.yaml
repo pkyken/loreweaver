@@ -1,4 +1,4 @@
-names: [coc, coc7, "call of cthulhu"]
+names: [coc, coc7, "call of cthulhu", "クトゥルフ神話TRPG", "新クトゥルフ神話TRPG"]
 defaults:
   力量: 50
   体质: 50
@@ -96,108 +96,109 @@ defaults:
   动物学: 1
   克苏鲁神话: 0
 alias:
-  力量: [str, STR, strength, Strength]
-  体质: [con, CON, constitution, Constitution, 體質]
+  力量: [str, STR, strength, Strength, "筋力"]
+  体质: [con, CON, constitution, Constitution, 體質, "体質"]
   体型: [siz, SIZ, size, Size, 體型, 体形, 體形]
   敏捷: [dex, DEX, dexterity, Dexterity]
   外貌: [app, APP, appearance, Appearance, 外表]
-  智力: [int, INT, intelligence, Intelligence, idea, 灵感, 靈感]
-  意志: [pow, POW, power, Power, will, willpower]
-  教育: [edu, EDU, education, Education, knowledge, 知识, 知識]
+  智力: [int, INT, intelligence, Intelligence, idea, 灵感, 靈感, "知性", "アイデア"]
+  意志: [pow, POW, power, Power, will, willpower, "精神力"]
+  教育: [edu, EDU, education, Education, knowledge, 知识, 知識, "教育値"]
   幸运: [LUC, luck, LUCK, luck value, 幸运值, 运气, 幸運, 運氣, 幸運值]
-  DB: [db, damage bonus, 伤害加值, 傷害加值]
-  体格: [build, Build, 體格]
-  移动力: [mov, MOV, move, movement, 移動力, 移动速度, 移動速度, 移速]
+  DB: [db, damage bonus, 伤害加值, 傷害加值, "ダメージ・ボーナス", "ダメージボーナス"]
+  体格: [build, Build, 體格, "ビルド"]
+  移动力: [mov, MOV, move, movement, 移動力, 移动速度, 移動速度, 移速, "移動率"]
   护甲: [ar, AR, armor, armour, 装甲, 護甲, 裝甲]
-  理智: [san, SAN, sanity, Sanity, san值, SAN值, 理智值, 理智点数, 心智, 心智点数, 心智點數, 理智點數]
-  理智上限: [sanmax, SANMAX, max sanity, sanity max, san上限, SAN上限, san值上限, SAN值上限, 理智值上限, 理智点数上限, 心智上限]
-  生命值: [hp, HP, hit points, health, 生命, 体力, 體力, 血量, 耐久值]
-  生命值上限: [hpmax, HPMAX, max hp, hp max, 生命上限, 体力上限, 體力上限, 血量上限, 耐久值上限]
-  魔法值: [mp, MP, magic points, 魔法, 魔力, 魔力值]
-  魔法值上限: [mpmax, MPMAX, max mp, mp max, 魔法上限, 蓝量上限, 藍量上限]
+  理智: [san, SAN, sanity, Sanity, san值, SAN值, 理智值, 理智点数, 心智, 心智点数, 心智點數, 理智點數, "正気度"]
+  理智上限: [sanmax, SANMAX, max sanity, sanity max, san上限, SAN上限, san值上限, SAN值上限, 理智值上限, 理智点数上限, 心智上限, "正気度上限"]
+  生命值: [hp, HP, hit points, health, 生命, 体力, 體力, 血量, 耐久值, "耐久力", "ヒット・ポイント"]
+  生命值上限: [hpmax, HPMAX, max hp, hp max, 生命上限, 体力上限, 體力上限, 血量上限, 耐久值上限, "耐久力上限"]
+  魔法值: [mp, MP, magic points, 魔法, 魔力, 魔力值, "マジック・ポイント"]
+  魔法值上限: [mpmax, MPMAX, max mp, mp max, 魔法上限, 蓝量上限, 藍量上限, "マジック・ポイント上限"]
   信用评级: [credit rating, credit, cr, CR, 信誉, 信用, 信誉度, 信用評級, 信譽, 信譽度]
   取悦: [charm, 魅惑, 取悅, 媚惑, 勾引, 风情, 風情]
-  话术: [fast talk, fast-talk, 快速交谈, 話術, 快速交談, 调情, 撩拨, 調情, 撩撥]
-  恐吓: [intimidate, intimidation, 恐嚇, 威吓, 威嚇]
-  说服: [persuade, persuasion, 辩论, 议价, 演讲, 說服, 辯論, 議價, 演講]
+  话术: [fast talk, fast-talk, 快速交谈, 話術, 快速交談, 调情, 撩拨, 調情, 撩撥, "言いくるめ"]
+  恐吓: [intimidate, intimidation, 恐嚇, 威吓, 威嚇, "威圧"]
+  说服: [persuade, persuasion, 辩论, 议价, 演讲, 說服, 辯論, 議價, 演講, "説得"]
   心理学: [psychology, psychoanalysis check, 心理學, 洞察情感, 察言观色, 共情, 同理心, 察言觀色]
-  母语: [own language, language own, native language, 母語]
-  外语: [foreign language, other language, language, 语言, 語言, 外語, 其他语言, 其他語言]
-  估价: [appraise, appraisal, 鉴定, 估價]
-  乔装: [disguise, 伪装, 喬裝]
-  潜行: [stealth, sneak, hide, 躲藏, 潛行, 隐匿]
-  追踪: [track, tracking, 跟踪, 追蹤, 跟蹤]
-  侦查: [spot hidden, spot, notice, perception, 侦察, 偵查, 偵察, 发现]
-  聆听: [listen, hearing, 倾听, 聆聽, 傾聽]
-  读唇: [read lips, lip reading, 唇语, 讀唇, 唇語]
-  图书馆: [library use, library, library-use, 图书馆使用, 圖書館使用, 图书馆利用, 圖書館, 圖書館利用]
-  生存: [survival, survive]
-  攀爬: [climb, climbing, 攀岩, 攀登, 攀巖]
+  母语: [own language, language own, native language, 母語, "母国語"]
+  外语: [foreign language, other language, language, 语言, 語言, 外語, 其他语言, 其他語言, "ほかの言語", "外国語"]
+  估价: [appraise, appraisal, 鉴定, 估價, "鑑定"]
+  乔装: [disguise, 伪装, 喬裝, "変装"]
+  潜行: [stealth, sneak, hide, 躲藏, 潛行, 隐匿, "隠密"]
+  追踪: [track, tracking, 跟踪, 追蹤, 跟蹤, "追跡"]
+  侦查: [spot hidden, spot, notice, perception, 侦察, 偵查, 偵察, 发现, "目星"]
+  聆听: [listen, hearing, 倾听, 聆聽, 傾聽, "聞き耳"]
+  读唇: [read lips, lip reading, 唇语, 讀唇, 唇語, "読唇術"]
+  图书馆: [library use, library, library-use, 图书馆使用, 圖書館使用, 图书馆利用, 圖書館, 圖書館利用, "図書館"]
+  生存: [survival, survive, "サバイバル"]
+  攀爬: [climb, climbing, 攀岩, 攀登, 攀巖, "登攀"]
   跳跃: [jump, jumping, 跳躍]
-  骑乘: [ride, riding, 骑术, 騎術]
-  游泳: [swim, swimming, 遊泳]
-  潜水: [diving, dive, 潛水]
-  艺术与手艺: [art craft, art and craft, arts crafts, art/craft, 艺术和手艺, 艺术, 手艺, 工艺, 技艺, 藝術與手藝, 藝術和手藝]
-  表演: [perform, performance, acting, 艺术和手艺:表演, 艺术和手艺（表演）]
+  骑乘: [ride, riding, 骑术, 騎術, "乗馬"]
+  游泳: [swim, swimming, 遊泳, "水泳"]
+  潜水: [diving, dive, 潛水, "ダイビング"]
+  艺术与手艺: [art craft, art and craft, arts crafts, art/craft, 艺术和手艺, 艺术, 手艺, 工艺, 技艺, 藝術與手藝, 藝術和手藝, "芸術／製作", "芸術/製作"]
+  表演: [perform, performance, acting, 艺术和手艺:表演, 艺术和手艺（表演）, "演技"]
   美术: [fine art, art, 美術, 艺术和手艺:美术, 艺术和手艺（美术）]
   伪造: [forgery, forge, 偽造]
-  摄影: [photography, photo, 攝影]
-  写作: [writing, literature, 文学, 寫作, 文學]
-  音乐: [music, 音樂]
-  舞蹈: [dance, dancing]
-  厨艺: [cooking, cook, cuisine, 烹饪, 廚藝, 烹飪]
-  妙手: [sleight of hand, sleight, legerdemain, 巧手, 藏匿, 盗窃, 盜竊]
-  锁匠: [locksmith, locksmithing, lockpick, lock picking, 开锁, 撬锁, 钳工, 鎖匠, 鉗工, 開鎖, 撬鎖]
-  电气维修: [electrical repair, electrical, electrician, 电器维修, 电工, 電氣維修, 電器維修, 電工]
-  机械维修: [mechanical repair, mechanical, mechanics, repair, 机器维修, 机修, 機器維修, 機修, 機械維修]
-  计算机使用: [computer use, computer, computers, 电脑使用, 計算機使用, 電腦使用, 计算机, 电脑, 計算機, 電腦]
-  导航: [navigate, navigation, 领航, 領航, 導航]
-  汽车驾驶: [drive auto, drive automobile, drive, driving, auto, automobile, 驾驶, 駕駛, 汽車駕駛, 汽车, 汽車, 开车, 開車, 驾车, 駕車]
-  驾驶:飞行器: [pilot aircraft, aircraft, 飞行器, 开飞行器, 驾驶飞行器, 驾驶:飞行器, 驾驶（飞行器）]
-  驾驶:船: [pilot boat, boat, ship, 船, 开船, 驾驶船, 驾驶:船, 驾驶（船）]
-  驯兽: [animal handling, animal handling coc, animal training, animal, 动物驯养, 驯养, 馴獸, 動物馴養, 馴養]
-  操作重型机械: [operate heavy machinery, heavy machinery, 重型操作, 重型机械, 重型, 重机, 操作重型機械, 重型機械, 重機]
-  斗殴: [fighting brawl, brawl, fighting, fist, 格斗, 格斗:斗殴, 格斗（斗殴）, 鬥毆, 格鬥]
-  斧: [axe, ax, 斧头, 斧子, 斧頭, 格斗:斧, 格斗（斧）]
-  链锯: [chainsaw, chain saw, 电锯, 油锯, 鏈鋸, 電鋸, 油鋸]
-  连枷: [flail, 链枷, 連枷, 鏈枷]
-  绞索: [garrote, garotte, 绞具, 絞索, 絞具]
-  矛: [spear, lance]
-  剑: [sword, swordsmanship, 剑术, 劍, 劍術]
-  鞭: [whip]
-  射击: [firearms, firearm, shooting, gun, guns, 火器, 枪械, 槍械, 射擊]
-  手枪: [handgun, pistol, firearms handgun, shoot handgun, shooting handgun, 射击:手枪, 射击（手枪）, 手槍]
-  步霰: [rifle shotgun, rifle/shotgun, rifle, shotgun, long gun, firearms rifle, firearms shotgun, 步枪/霰弹枪, 射击:步枪, 射击:霰弹枪, 步枪, 霰弹枪, 散弹枪, 步槍, 霰彈槍, 步槍/霰彈槍]
+  摄影: [photography, photo, 攝影, "写真術"]
+  写作: [writing, literature, 文学, 寫作, 文學, "文芸"]
+  音乐: [music, 音樂, "音楽"]
+  舞蹈: [dance, dancing, "ダンス"]
+  厨艺: [cooking, cook, cuisine, 烹饪, 廚藝, 烹飪, "料理"]
+  妙手: [sleight of hand, sleight, legerdemain, 巧手, 藏匿, 盗窃, 盜竊, "手さばき"]
+  锁匠: [locksmith, locksmithing, lockpick, lock picking, 开锁, 撬锁, 钳工, 鎖匠, 鉗工, 開鎖, 撬鎖, "鍵開け"]
+  电气维修: [electrical repair, electrical, electrician, 电器维修, 电工, 電氣維修, 電器維修, 電工, "電気修理"]
+  机械维修: [mechanical repair, mechanical, mechanics, repair, 机器维修, 机修, 機器維修, 機修, 機械維修, "機械修理"]
+  计算机使用: [computer use, computer, computers, 电脑使用, 計算機使用, 電腦使用, 计算机, 电脑, 計算機, 電腦, "コンピューター"]
+  导航: [navigate, navigation, 领航, 領航, 導航, "ナビゲート"]
+  汽车驾驶: [drive auto, drive automobile, drive, driving, auto, automobile, 驾驶, 駕駛, 汽車駕駛, 汽车, 汽車, 开车, 開車, 驾车, 駕車, "運転（自動車）", "運転(自動車)"]
+  驾驶:飞行器: [pilot aircraft, aircraft, 飞行器, 开飞行器, 驾驶飞行器, 驾驶:飞行器, 驾驶（飞行器）, "操縦（航空機）", "操縦(航空機)"]
+  驾驶:船: [pilot boat, boat, ship, 船, 开船, 驾驶船, 驾驶:船, 驾驶（船）, "操縦（船舶）", "操縦(船舶)"]
+  驯兽: [animal handling, animal handling coc, animal training, animal, 动物驯养, 驯养, 馴獸, 動物馴養, 馴養, "動物使い"]
+  操作重型机械: [operate heavy machinery, heavy machinery, 重型操作, 重型机械, 重型, 重机, 操作重型機械, 重型機械, 重機, "重機械操作"]
+  斗殴: [fighting brawl, brawl, fighting, fist, 格斗, 格斗:斗殴, 格斗（斗殴）, 鬥毆, 格鬥, "近接戦闘（格闘）", "近接戦闘(格闘)"]
+  斧: [axe, ax, 斧头, 斧子, 斧頭, 格斗:斧, 格斗（斧）, "近接戦闘（斧）", "近接戦闘(斧)"]
+  链锯: [chainsaw, chain saw, 电锯, 油锯, 鏈鋸, 電鋸, 油鋸, "近接戦闘（チェーンソー）", "近接戦闘(チェーンソー)"]
+  连枷: [flail, 链枷, 連枷, 鏈枷, "近接戦闘（フレイル）", "近接戦闘(フレイル)"]
+  绞索: [garrote, garotte, 绞具, 絞索, 絞具, "近接戦闘（絞殺ひも）", "近接戦闘(絞殺ひも)"]
+  矛: [spear, lance, "近接戦闘（槍）", "近接戦闘(槍)"]
+  剑: [sword, swordsmanship, 剑术, 劍, 劍術, "近接戦闘（刀剣）", "近接戦闘(刀剣)"]
+  鞭: [whip, "近接戦闘（むち）", "近接戦闘(むち)"]
+  射击: [firearms, firearm, shooting, gun, guns, 火器, 枪械, 槍械, 射擊, "射撃"]
+  手枪: [handgun, pistol, firearms handgun, shoot handgun, shooting handgun, 射击:手枪, 射击（手枪）, 手槍, "射撃（拳銃）", "射撃(拳銃)"]
+  步霰: [rifle shotgun, rifle/shotgun, rifle, shotgun, long gun, firearms rifle, firearms shotgun, 步枪/霰弹枪, 射击:步枪, 射击:霰弹枪, 步枪, 霰弹枪, 散弹枪, 步槍, 霰彈槍, 步槍/霰彈槍, "射撃（ライフル／ショットガン）", "射撃(ライフル/ショットガン)"]
   投掷: [throw, throwing, 投擲]
   爆破: [demolitions, demolition, explosives]
-  炮术: [artillery, gunnery, 炮術, 火炮]
-  急救: [first aid, first-aid, 医疗]
+  炮术: [artillery, gunnery, 炮術, 火炮, "砲", "砲術"]
+  急救: [first aid, first-aid, 医疗, "応急手当"]
   医学: [medicine, medical, 醫學, 医疗, 醫療]
   精神分析: [psychoanalysis, psycho analysis, 心理分析]
-  催眠: [hypnosis, hypnotism]
-  会计: [accounting, accountant, 會計]
+  催眠: [hypnosis, hypnotism, "催眠術"]
+  会计: [accounting, accountant, 會計, "経理"]
   法律: [law, legal, 律法]
-  历史: [history, 歷史]
+  历史: [history, 歷史, "歴史"]
   考古学: [archaeology, archeology, 考古學]
   博物: [natural world, nature, natural history, 自然, 自然学, 自然史, 自然學, 博物学, 博物學]
-  人类学: [anthropology, 人類學]
-  神秘学: [occult, occultism, 神秘學]
-  电子学: [electronics, electronic, 電子學]
+  人类学: [anthropology, 人類學, "人類学"]
+  神秘学: [occult, occultism, 神秘學, "オカルト"]
+  电子学: [electronics, electronic, 電子學, "電子工学"]
   科学: [science, sciences, 科學]
-  天文学: [astronomy, 科学:天文学, 科学（天文学）, 天文學]
-  生物学: [biology, 科学:生物学, 科学（生物学）, 生物學]
-  植物学: [botany, 科学:植物学, 科学（植物学）, 植物學]
-  化学: [chemistry, 科学:化学, 科学（化学）, 化學]
-  密码学: [cryptography, cryptology, 科学:密码学, 科学（密码学）, 密碼學]
-  工程学: [engineering, engineer, 科学:工程学, 科学（工程学）, 工程學]
-  司法科学: [forensics, forensic science, 科学:司法科学, 科学（司法科学）, 司法科學]
-  地质学: [geology, geography, 科学:地质学, 科学（地质学）, 地質學, 地理学]
-  数学: [mathematics, math, maths, 科学:数学, 科学（数学）, 數學]
-  气象学: [meteorology, weather science, 科学:气象学, 科学（气象学）, 氣象學]
-  药学: [pharmacy, pharmacology, 科学:药学, 科学（药学）, 藥學]
-  物理学: [physics, physical science, 科学:物理学, 科学（物理学）, 物理, 物理學]
-  动物学: [zoology, 科学:动物学, 科学（动物学）, 動物學]
-  克苏鲁神话: [cthulhu mythos, mythos, cm, CM, 克苏鲁, 克苏鲁神话知识, 克蘇魯, 克蘇魯神話, 克蘇魯神話知識]
+  天文学: [astronomy, 科学:天文学, 科学（天文学）, 天文學, "科学(天文学)"]
+  生物学: [biology, 科学:生物学, 科学（生物学）, 生物學, "科学(生物学)"]
+  植物学: [botany, 科学:植物学, 科学（植物学）, 植物學, "科学(植物学)"]
+  化学: [chemistry, 科学:化学, 科学（化学）, 化學, "科学(化学)"]
+  密码学: [cryptography, cryptology, 科学:密码学, 科学（密码学）, 密碼學, "科学（暗号学）", "科学(暗号学)"]
+  工程学: [engineering, engineer, 科学:工程学, 科学（工程学）, 工程學, "科学（工学）", "科学(工学)"]
+  司法科学: [forensics, forensic science, 科学:司法科学, 科学（司法科学）, 司法科學, "科学（法医学）", "科学(法医学)"]
+  地质学: [geology, geography, 科学:地质学, 科学（地质学）, 地質學, 地理学, "科学（地質学）", "科学(地質学)"]
+  数学: [mathematics, math, maths, 科学:数学, 科学（数学）, 數學, "科学(数学)"]
+  气象学: [meteorology, weather science, 科学:气象学, 科学（气象学）, 氣象學, "科学（気象学）", "科学(気象学)"]
+  药学: [pharmacy, pharmacology, 科学:药学, 科学（药学）, 藥學, "科学（薬学）", "科学(薬学)"]
+  物理学: [physics, physical science, 科学:物理学, 科学（物理学）, 物理, 物理學, "科学(物理学)"]
+  动物学: [zoology, 科学:动物学, 科学（动物学）, 動物學, "科学（動物学）", "科学(動物学)"]
+  克苏鲁神话: [cthulhu mythos, mythos, cm, CM, 克苏鲁, 克苏鲁神话知识, 克蘇魯, 克蘇魯神話, 克蘇魯神話知識, "クトゥルフ神話"]
+  闪避: [dodge, Dodge, "回避"]
 st_show:
   top: [力量, 敏捷, 体质, 体型, 外貌, 智力, 意志, 教育, 幸运, DB, 体格, 移动力, 理智, 生命值, 魔法值, 护甲]
   sortBy: name
@@ -227,10 +228,10 @@ resolution:
     unfavorable: penalty
     default_skill: 侦查
   difficulties:
-    regular: {prefixes: {en: [regular], zh: []}}
-    hard: {target: "floor(target / 2)", prefixes: {en: [hard], zh: [困难]}}
-    extreme: {target: "floor(target / 5)", prefixes: {en: [extreme], zh: [极难]}}
-    critical: {target: "1", prefixes: {en: [critical], zh: [大成功]}}
+    regular: {prefixes: {en: [regular], zh: [], ja: [レギュラー]}}
+    hard: {target: "floor(target / 2)", prefixes: {en: [hard], zh: [困难], ja: [ハード]}}
+    extreme: {target: "floor(target / 5)", prefixes: {en: [extreme], zh: [极难], ja: [イクストリーム, エクストリーム]}}
+    critical: {target: "1", prefixes: {en: [critical], zh: [大成功], ja: [クリティカル]}}
   # Rulebook rule (SealDice rule 0): 1 always crits; 100 always fumbles; the
   # 96-100 fumble band applies when the EFFECTIVE target is below 50.
   ranks:
@@ -322,6 +323,13 @@ labels:
     regular: {display: 成功, markers: [常规成功, 普通成功]}
     fail: {display: 失败, markers: []}
     fumble: [大失败]
+  ja:
+    crit: [クリティカル成功]
+    extreme: [イクストリーム成功]
+    hard: [ハード成功]
+    regular: {display: レギュラー成功, markers: [レギュラー成功]}
+    fail: {display: 失敗, markers: []}
+    fumble: [ファンブル, 致命的失敗]
 derived:
   DB:
     sum_ranges:
@@ -374,6 +382,116 @@ initiative:
 # Presentation-only localized names for canonical keys (checks/tools render via
 # RulePack.display_name; unmapped keys fall back to the canonical key itself).
 display:
+  ja:
+    bonus: ボーナス・ダイス
+    penalty: ペナルティ・ダイス
+    力量: STR
+    体质: CON
+    体型: SIZ
+    敏捷: DEX
+    外貌: APP
+    智力: INT
+    意志: POW
+    教育: EDU
+    幸运: 幸運
+    理智: 正気度
+    理智上限: 正気度上限
+    生命值: 耐久力
+    生命值上限: 耐久力上限
+    魔法值: マジック・ポイント
+    魔法值上限: マジック・ポイント上限
+    DB: ダメージ・ボーナス
+    体格: ビルド
+    移动力: MOV
+    护甲: 装甲
+    闪避: 回避
+    灵感: アイデア
+    知识: 知識
+    信用评级: 信用
+    取悦: 魅惑
+    话术: 言いくるめ
+    恐吓: 威圧
+    说服: 説得
+    心理学: 心理学
+    母语: 母国語
+    外语: ほかの言語
+    估价: 鑑定
+    乔装: 変装
+    潜行: 隠密
+    追踪: 追跡
+    侦查: 目星
+    聆听: 聞き耳
+    读唇: 読唇術
+    图书馆: 図書館
+    生存: サバイバル
+    攀爬: 登攀
+    跳跃: 跳躍
+    骑乘: 乗馬
+    游泳: 水泳
+    潜水: ダイビング
+    艺术与手艺: 芸術／製作
+    表演: 演技
+    美术: 美術
+    伪造: 偽造
+    摄影: 写真術
+    写作: 文芸
+    音乐: 音楽
+    舞蹈: ダンス
+    厨艺: 料理
+    妙手: 手さばき
+    锁匠: 鍵開け
+    电气维修: 電気修理
+    机械维修: 機械修理
+    计算机使用: コンピューター
+    导航: ナビゲート
+    汽车驾驶: 運転（自動車）
+    驾驶:飞行器: 操縦（航空機）
+    驾驶:船: 操縦（船舶）
+    驯兽: 動物使い
+    操作重型机械: 重機械操作
+    斗殴: 近接戦闘（格闘）
+    斧: 近接戦闘（斧）
+    链锯: 近接戦闘（チェーンソー）
+    连枷: 近接戦闘（フレイル）
+    绞索: 近接戦闘（絞殺ひも）
+    矛: 近接戦闘（槍）
+    剑: 近接戦闘（刀剣）
+    鞭: 近接戦闘（むち）
+    射击: 射撃
+    手枪: 射撃（拳銃）
+    步霰: 射撃（ライフル／ショットガン）
+    投掷: 投擲
+    爆破: 爆破
+    炮术: 砲
+    急救: 応急手当
+    医学: 医学
+    精神分析: 精神分析
+    催眠: 催眠術
+    会计: 経理
+    法律: 法律
+    历史: 歴史
+    考古学: 考古学
+    博物: 博物学
+    人类学: 人類学
+    神秘学: オカルト
+    电子学: 電子工学
+    科学: 科学
+    天文学: 科学（天文学）
+    生物学: 科学（生物学）
+    植物学: 科学（植物学）
+    化学: 科学（化学）
+    密码学: 科学（暗号学）
+    工程学: 科学（工学）
+    司法科学: 科学（法医学）
+    地质学: 科学（地質学）
+    数学: 科学（数学）
+    气象学: 科学（気象学）
+    药学: 科学（薬学）
+    物理学: 科学（物理学）
+    动物学: 科学（動物学）
+    克苏鲁神话: クトゥルフ神話
+    职业: 職業
+    年龄: 年齢
   zh:
     bonus: 奖励骰
     penalty: 惩罚骰
@@ -496,7 +614,7 @@ subsystems:
     # remaining points (RAW would take the loss dice's maximum, "max").
     # Faithfully ported from the pre-M16 engine implementation.
     fumble_loss: all
-    display: {en: Sanity, zh: 理智}
+    display: {en: Sanity, zh: 理智, ja: 正気度}
   skill_growth:
     template: improvement_check
     roll: 1d100
@@ -505,24 +623,24 @@ subsystems:
     # Rulebook experience check: a roll above the skill grows it, and 96-100
     # always grows even at high skill.
     auto_success_above: 95
-    display: {en: Skill growth, zh: 技能成长}
+    display: {en: Skill growth, zh: 技能成长, ja: 技能成長}
   spend_luck:
     template: resource_spend_adjust
     stat: LUC
-    display: {en: Luck, zh: 幸运}
+    display: {en: Luck, zh: 幸运, ja: 幸運}
   opposed_check:
     template: opposed
-    display: {en: Opposed check, zh: 对抗检定}
+    display: {en: Opposed check, zh: 对抗检定, ja: 対抗判定}
   random_madness:
     template: table_draw
     default: temp
-    display: {en: Madness symptom, zh: 疯狂症状}
+    display: {en: Madness symptom, zh: 疯狂症状, ja: 狂気の症状}
     # Madness-table entries are CJK game DATA (i18n-exempt by convention),
     # ported verbatim from the pre-M16 engine tables.
     tables:
       temp:
-        display: {en: Temporary madness, zh: 临时性疯狂}
-        aliases: [临时, temporary]
+        display: {en: Temporary madness, zh: 临时性疯狂, ja: 一時的狂気}
+        aliases: [临时, temporary, 一時的, 一時]
         entries:
           - 失忆：调查员会发现自己只记得最后身处的安全地点，却没有任何来到这里的记忆。
           - 假性残疾：调查员陷入了心理性的失明、失聪或躯体缺失感中。
@@ -533,8 +651,8 @@ subsystems:
           - 逃避行为：调查员会用任何手段试图逃离现场。
           - 歇斯底里：调查员表现出大笑、哭泣、嘶吼、害怕等极端情绪反应。
       long:
-        display: {en: Long-term madness, zh: 总结性疯狂}
-        aliases: [总结, 总结性]
+        display: {en: Long-term madness, zh: 总结性疯狂, ja: 長期の狂気}
+        aliases: [总结, 总结性, 長期, 長期の狂気]
         entries:
           - 恐惧症：调查员患上了一种恐惧症，如幽闭恐惧症、恐高症等。
           - 躁狂症：调查员患上了一种躁狂症，如盗窃癖、纵火癖等。
@@ -545,8 +663,8 @@ subsystems:
           - 抑郁症：调查员陷入了严重的抑郁状态。
           - 创伤后应激障碍：调查员因恐怖经历而产生持续的心理创伤。
       indefinite:
-        display: {en: Indefinite madness, zh: 不定性疯狂}
-        aliases: [不定, 不定性]
+        display: {en: Indefinite madness, zh: 不定性疯狂, ja: 不定の狂気}
+        aliases: [不定, 不定性, 不定の狂気]
         entries:
           - 强烈的被迫害妄想，认为周围的一切都在针对自己。
           - 无法控制的重复行为，如不断洗手、检查门锁等。
@@ -573,6 +691,7 @@ commands:
 expertise:
   en: "# Call of Cthulhu (CoC7) — Keeper\nPsychological horror over gore: reveal the truth gradually, and pace the descent with sanity checks at genuine horror exposures. Investigation drives play — clues move the story, and failures move it too. The engine computes success levels, bonus/penalty dice, and criticals; you narrate from its results."
   zh: "# 克苏鲁的呼唤（CoC7）——守秘人\n心理恐怖重于血浆：逐步揭示真相，在真正的恐怖暴露处用理智检定为疯狂的降临定节奏。调查驱动游戏——线索推动故事，失败同样推动故事。成功等级、奖惩骰与大成功大失败由引擎计算；你按结果叙事。"
+  ja: "# 新クトゥルフ神話TRPG（CoC7）— キーパー\n流血表現より心理的恐怖を重視し、真相は段階的に明かしてください。本当に恐ろしいものへ直面した場面で正気度判定を行い、狂気への下降を演出します。探索がプレイを動かし、成功だけでなく失敗も物語を前へ進めます。成功段階、ボーナス／ペナルティ・ダイス、クリティカルとファンブルはエンジンが計算するため、その結果に従って描写してください。"
 
 # Sheet substrate (M16 stage B): how this system's sheets are shaped — the
 # fresh-sheet tables, the canonical-name <-> storage-key bridge, current-pool

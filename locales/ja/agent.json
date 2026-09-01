@@ -4,7 +4,7 @@
   "agent.forge.invalid": "有効なKPスキルを生成できませんでした: {error}。何もインストールされていません。",
   "agent.forge.module_bad_id": "使用可能なモジュールIDを生成できませんでした: {error}。何もインストールされていません。",
   "agent.forge.module_id_fallback": "生成されたメタデータに使用可能なASCII IDがなかったため、安定したID `{module_id}` でモジュールをインストールしました。",
-  "agent.forge.module_id_requirement": "必須の出力形式（見出しから直接始めるという前の指示よりも、こちらを優先します）: 先頭に、正確に`---\\nid: <a-z、0-9、ハイフンだけを使った小文字ASCIIスラッグ>\\n---`という形のYAMLフロントマターを置き、その後にレベル1のモジュールタイトルとMarkdown本文を書いてください。",
+  "agent.forge.module_id_requirement": "必須の出力形式（見出しから直接始めるという前の指示よりも、こちらを優先します）: 先頭に、正確に`---\nid: <a-z, 0-9, ハイフンだけを使った小文字ASCIIスラッグ>\n---`という形のYAMLフロントマターを置き、その後にレベル1のモジュールタイトルとMarkdown本文を書いてください。",
   "agent.forge.module_installed": "新しいモジュールを作成してインストールしました: {name} — {path}。\n{detail}",
   "agent.forge.module_invalid": "有効なモジュールを生成できませんでした: {error}。何もインストールされていません。",
   "agent.forge.module_no_data_dir": "このサーバーにはデータディレクトリが設定されていないため、モジュール生成を利用できません。",
