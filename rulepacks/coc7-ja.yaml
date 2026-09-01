@@ -21,7 +21,7 @@ alias:
   理智: [san, SAN, sanity, Sanity, san值, SAN值, 理智值, 理智点数, 心智, 心智点数, 心智點數, 理智點數, 正気度]
   理智上限: [sanmax, SANMAX, max sanity, sanity max, san上限, SAN上限, san值上限, SAN值上限, 理智值上限, 理智点数上限, 心智上限, 正気度上限]
   生命值: [hp, HP, hit points, health, 生命, 体力, 體力, 血量, 耐久值]
-  生命值上限: [hpmax, HPMAX, max hp, hp max, 生命上限, 体力上限, 體力上限, 血量上限, 耐久値上限]
+  生命值上限: [hpmax, HPMAX, max hp, hp max, 生命上限, 体力上限, 體力上限, 血量上限, 耐久值上限, 耐久値上限]
   魔法值: [mp, MP, magic points, 魔法, 魔力, 魔力值]
   魔法值上限: [mpmax, MPMAX, max mp, mp max, 魔法上限, 蓝量上限, 藍量上限]
   信用评级: [credit rating, credit, cr, CR, 信誉, 信用, 信誉度, 信用評級, 信譽, 信譽度, 信用度, 信用値]
@@ -295,6 +295,9 @@ subsystems:
           - "自分が人ならざる生物へ変化したと確信する。"
 
 commands:
+  # Keep the original English/Chinese entry points on the base pack.
+  coc: null
+  coc7: null
   クトゥルフ: {action: make_char}
   正気度: {tool: sanity_check}
   正気度判定: {tool: sanity_check}
