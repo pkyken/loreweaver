@@ -1,0 +1,314 @@
+extends: coc7
+names: [coc7-ja, coc7jp, "Call of Cthulhu 7e Japanese", "クトゥルフ神話TRPG", "クトゥルフ"]
+set_keys: [coc7-ja, coc7jp, "クトゥルフ"]
+
+# Japanese input vocabulary. Canonical keys intentionally remain those of the
+# base CoC7 pack so existing sheets and saved campaigns stay compatible.
+alias:
+  力量: [str, STR, strength, Strength, 筋力]
+  体质: [con, CON, constitution, Constitution, 體質]
+  体型: [siz, SIZ, size, Size, 體型, 体形, 體形]
+  敏捷: [dex, DEX, dexterity, Dexterity]
+  外貌: [app, APP, appearance, Appearance, 外表, 容姿]
+  智力: [int, INT, intelligence, Intelligence, idea, 灵感, 靈感, アイデア]
+  意志: [pow, POW, power, Power, will, willpower, 精神力]
+  教育: [edu, EDU, education, Education, knowledge, 知识, 知識]
+  幸运: [LUC, luck, LUCK, luck value, 幸运值, 运气, 幸運, 運氣, 幸運值, ラック]
+  DB: [db, damage bonus, 伤害加值, 傷害加值, ダメージボーナス, ダメージ・ボーナス]
+  体格: [build, Build, 體格, ビルド]
+  移动力: [mov, MOV, move, movement, 移動力, 移动速度, 移動速度, 移速]
+  护甲: [ar, AR, armor, armour, 装甲, 護甲, 裝甲]
+  理智: [san, SAN, sanity, Sanity, san值, SAN值, 理智值, 理智点数, 心智, 心智点数, 心智點數, 理智點數, 正気度]
+  理智上限: [sanmax, SANMAX, max sanity, sanity max, san上限, SAN上限, san值上限, SAN值上限, 理智值上限, 理智点数上限, 心智上限, 正気度上限]
+  生命值: [hp, HP, hit points, health, 生命, 体力, 體力, 血量, 耐久值]
+  生命值上限: [hpmax, HPMAX, max hp, hp max, 生命上限, 体力上限, 體力上限, 血量上限, 耐久値上限]
+  魔法值: [mp, MP, magic points, 魔法, 魔力, 魔力值]
+  魔法值上限: [mpmax, MPMAX, max mp, mp max, 魔法上限, 蓝量上限, 藍量上限]
+  信用评级: [credit rating, credit, cr, CR, 信誉, 信用, 信誉度, 信用評級, 信譽, 信譽度, 信用度, 信用値]
+  取悦: [charm, 魅惑, 取悅, 媚惑, 勾引, 风情, 風情]
+  话术: [fast talk, fast-talk, 快速交谈, 話術, 快速交談, 调情, 撩拨, 調情, 撩撥, 言いくるめ]
+  恐吓: [intimidate, intimidation, 恐嚇, 威吓, 威嚇, 威圧]
+  说服: [persuade, persuasion, 辩论, 议价, 演讲, 說服, 辯論, 議價, 演講, 説得]
+  心理学: [psychology, psychoanalysis check, 心理學, 洞察情感, 察言观色, 共情, 同理心, 察言觀色]
+  母语: [own language, language own, native language, 母語, 母国語]
+  外语: [foreign language, other language, language, 语言, 語言, 外語, 其他语言, 其他語言, 他言語, 外国語]
+  估价: [appraise, appraisal, 鉴定, 估價, 目利き]
+  乔装: [disguise, 伪装, 喬裝, 変装]
+  潜行: [stealth, sneak, hide, 躲藏, 潛行, 隐匿, 隠密, 忍び歩き]
+  追踪: [track, tracking, 跟踪, 追蹤, 跟蹤, 追跡]
+  侦查: [spot hidden, spot, notice, perception, 侦察, 偵查, 偵察, 发现, 目星]
+  聆听: [listen, hearing, 倾听, 聆聽, 傾聽, 聞き耳]
+  读唇: [read lips, lip reading, 唇语, 讀唇, 唇語, 読唇術]
+  图书馆: [library use, library, library-use, 图书馆使用, 圖書館使用, 图书馆利用, 圖書館, 圖書館利用, 図書館]
+  生存: [survival, survive, サバイバル]
+  攀爬: [climb, climbing, 攀岩, 攀登, 攀巖, 登攀]
+  跳跃: [jump, jumping, 跳躍]
+  骑乘: [ride, riding, 骑术, 騎術, 乗馬]
+  游泳: [swim, swimming, 遊泳, 水泳]
+  潜水: [diving, dive, 潛水]
+  艺术与手艺: [art craft, art and craft, arts crafts, art/craft, 艺术和手艺, 艺术, 手艺, 工艺, 技艺, 藝術與手藝, 藝術和手藝, 芸術, 製作, 芸術／製作]
+  表演: [perform, performance, acting, "艺术和手艺:表演", 艺术和手艺（表演）, 演技]
+  美术: [fine art, art, 美術, "艺术和手艺:美术", 艺术和手艺（美术）]
+  伪造: [forgery, forge, 偽造]
+  摄影: [photography, photo, 攝影, 写真術]
+  写作: [writing, literature, 文学, 寫作, 文學, 執筆]
+  音乐: [music, 音樂, 音楽]
+  舞蹈: [dance, dancing, ダンス]
+  厨艺: [cooking, cook, cuisine, 烹饪, 廚藝, 烹飪, 料理]
+  妙手: [sleight of hand, sleight, legerdemain, 巧手, 藏匿, 盗窃, 盜竊, 手さばき]
+  锁匠: [locksmith, locksmithing, lockpick, lock picking, 开锁, 撬锁, 钳工, 鎖匠, 鉗工, 開鎖, 撬鎖, 鍵開け]
+  电气维修: [electrical repair, electrical, electrician, 电器维修, 电工, 電氣維修, 電器維修, 電工, 電気修理]
+  机械维修: [mechanical repair, mechanical, mechanics, repair, 机器维修, 机修, 機器維修, 機修, 機械維修, 機械修理]
+  计算机使用: [computer use, computer, computers, 电脑使用, 計算機使用, 電腦使用, 计算机, 电脑, 計算機, 電腦, コンピューター, コンピューター使用]
+  导航: [navigate, navigation, 领航, 領航, 導航, ナビゲート]
+  汽车驾驶: [drive auto, drive automobile, drive, driving, auto, automobile, 驾驶, 駕駛, 汽車駕駛, 汽车, 汽車, 开车, 開車, 驾车, 駕車, 自動車運転, 運転]
+  "驾驶:飞行器": [pilot aircraft, aircraft, 飞行器, 开飞行器, 驾驶飞行器, "驾驶:飞行器", 驾驶（飞行器）, 操縦（航空機）, 航空機操縦]
+  "驾驶:船": [pilot boat, boat, ship, 船, 开船, 驾驶船, "驾驶:船", 驾驶（船）, 操縦（船舶）, 船舶操縦]
+  驯兽: [animal handling, animal handling coc, animal training, animal, 动物驯养, 驯养, 馴獸, 動物馴養, 馴養, 動物使い]
+  操作重型机械: [operate heavy machinery, heavy machinery, 重型操作, 重型机械, 重型, 重机, 操作重型機械, 重型機械, 重機, 重機械操作]
+  斗殴: [fighting brawl, brawl, fighting, fist, 格斗, "格斗:斗殴", 格斗（斗殴）, 鬥毆, 格鬥, 近接戦闘（格闘）, 格闘]
+  斧: [axe, ax, 斧头, 斧子, 斧頭, "格斗:斧", 格斗（斧）, 近接戦闘（斧）]
+  链锯: [chainsaw, chain saw, 电锯, 油锯, 鏈鋸, 電鋸, 油鋸, チェーンソー, 近接戦闘（チェーンソー）]
+  连枷: [flail, 链枷, 連枷, 鏈枷, フレイル, 近接戦闘（フレイル）]
+  绞索: [garrote, garotte, 绞具, 絞索, 絞具, 絞殺ひも, 近接戦闘（絞殺ひも）]
+  矛: [spear, lance, 槍, 近接戦闘（槍）]
+  剑: [sword, swordsmanship, 剑术, 劍, 劍術, 剣, 近接戦闘（剣）]
+  鞭: [whip, 鞭, 近接戦闘（鞭）]
+  射击: [firearms, firearm, shooting, gun, guns, 火器, 枪械, 槍械, 射擊, 射撃]
+  手枪: [handgun, pistol, firearms handgun, shoot handgun, shooting handgun, "射击:手枪", 射击（手枪）, 手槍, 拳銃, 射撃（拳銃）]
+  步霰: [rifle shotgun, rifle/shotgun, rifle, shotgun, long gun, firearms rifle, firearms shotgun, 步枪/霰弹枪, "射击:步枪", "射击:霰弹枪", 步枪, 霰弹枪, 散弹枪, 步槍, 霰彈槍, 步槍/霰彈槍, ライフル／ショットガン, 射撃（ライフル／ショットガン）]
+  投掷: [throw, throwing, 投擲]
+  爆破: [demolitions, demolition, explosives]
+  炮术: [artillery, gunnery, 炮術, 火炮, 砲]
+  急救: [first aid, first-aid, 応急手当]
+  医学: [medicine, medical, 醫學, 医疗, 醫療]
+  精神分析: [psychoanalysis, psycho analysis, 心理分析]
+  催眠: [hypnosis, hypnotism, 催眠術]
+  会计: [accounting, accountant, 會計, 経理]
+  法律: [law, legal, 律法]
+  历史: [history, 歷史]
+  考古学: [archaeology, archeology, 考古學]
+  博物: [natural world, nature, natural history, 自然, 自然学, 自然史, 自然學, 博物学, 博物學]
+  人类学: [anthropology, 人類學]
+  神秘学: [occult, occultism, 神秘學, オカルト]
+  电子学: [electronics, electronic, 電子學, 電子工学]
+  科学: [science, sciences, 科學]
+  天文学: [astronomy, "科学:天文学", 科学（天文学）, 天文學]
+  生物学: [biology, "科学:生物学", 科学（生物学）, 生物學]
+  植物学: [botany, "科学:植物学", 科学（植物学）, 植物學]
+  化学: [chemistry, "科学:化学", 科学（化学）, 化學]
+  密码学: [cryptography, cryptology, "科学:密码学", 科学（密码学）, 密碼學, 暗号学]
+  工程学: [engineering, engineer, "科学:工程学", 科学（工程学）, 工程學, 工学]
+  司法科学: [forensics, forensic science, "科学:司法科学", 科学（司法科学）, 司法科學, 鑑識]
+  地质学: [geology, geography, "科学:地质学", 科学（地质学）, 地質學, 地理学, 地質学]
+  数学: [mathematics, math, maths, "科学:数学", 科学（数学）, 數學]
+  气象学: [meteorology, weather science, "科学:气象学", 科学（气象学）, 氣象學]
+  药学: [pharmacy, pharmacology, "科学:药学", 科学（药学）, 藥學, 薬学]
+  物理学: [physics, physical science, "科学:物理学", 科学（物理学）, 物理, 物理學]
+  动物学: [zoology, "科学:动物学", 科学（动物学）, 動物學]
+  克苏鲁神话: [cthulhu mythos, mythos, cm, CM, 克苏鲁, 克苏鲁神话知识, 克蘇魯, 克蘇魯神話, 克蘇魯神話知識, クトゥルフ神話]
+  闪避: [dodge, 回避]
+
+resolution:
+  difficulties:
+    regular:
+      prefixes:
+        ja: [レギュラー, 通常]
+    hard:
+      prefixes:
+        ja: [ハード, 困難]
+    extreme:
+      prefixes:
+        ja: [イクストリーム, 極難]
+    critical:
+      prefixes:
+        ja: [クリティカル]
+
+labels:
+  ja:
+    crit: [クリティカル]
+    extreme: [イクストリーム成功]
+    hard: [ハード成功]
+    regular: {display: レギュラー成功, markers: [レギュラー成功, 通常成功]}
+    fail: {display: 失敗, markers: []}
+    fumble: [ファンブル, 致命的失敗]
+
+display:
+  ja:
+    bonus: ボーナス・ダイス
+    penalty: ペナルティ・ダイス
+    力量: STR
+    体质: CON
+    体型: SIZ
+    敏捷: DEX
+    外貌: APP
+    智力: INT
+    意志: POW
+    教育: EDU
+    幸运: 幸運
+    理智: 正気度
+    理智上限: 正気度上限
+    生命值: HP
+    生命值上限: 最大HP
+    魔法值: MP
+    魔法值上限: 最大MP
+    DB: ダメージ・ボーナス
+    体格: ビルド
+    移动力: MOV
+    护甲: 装甲
+    闪避: 回避
+    灵感: アイデア
+    知识: 知識
+    信用评级: 信用
+    取悦: 魅惑
+    话术: 言いくるめ
+    恐吓: 威圧
+    说服: 説得
+    心理学: 心理学
+    母语: 母国語
+    外语: 他言語
+    估价: 目利き
+    乔装: 変装
+    潜行: 隠密
+    追踪: 追跡
+    侦查: 目星
+    聆听: 聞き耳
+    读唇: 読唇術
+    图书馆: 図書館
+    生存: サバイバル
+    攀爬: 登攀
+    跳跃: 跳躍
+    骑乘: 乗馬
+    游泳: 水泳
+    潜水: 潜水
+    艺术与手艺: 芸術／製作
+    表演: 演技
+    美术: 美術
+    伪造: 偽造
+    摄影: 写真術
+    写作: 文学
+    音乐: 音楽
+    舞蹈: ダンス
+    厨艺: 料理
+    妙手: 手さばき
+    锁匠: 鍵開け
+    电气维修: 電気修理
+    机械维修: 機械修理
+    计算机使用: コンピューター
+    导航: ナビゲート
+    汽车驾驶: 自動車運転
+    "驾驶:飞行器": 操縦（航空機）
+    "驾驶:船": 操縦（船舶）
+    驯兽: 動物使い
+    操作重型机械: 重機械操作
+    斗殴: 近接戦闘（格闘）
+    斧: 近接戦闘（斧）
+    链锯: 近接戦闘（チェーンソー）
+    连枷: 近接戦闘（フレイル）
+    绞索: 近接戦闘（絞殺ひも）
+    矛: 近接戦闘（槍）
+    剑: 近接戦闘（剣）
+    鞭: 近接戦闘（鞭）
+    射击: 射撃
+    手枪: 射撃（拳銃）
+    步霰: 射撃（ライフル／ショットガン）
+    投掷: 投擲
+    爆破: 爆破
+    炮术: 砲
+    急救: 応急手当
+    医学: 医学
+    精神分析: 精神分析
+    催眠: 催眠術
+    会计: 経理
+    法律: 法律
+    历史: 歴史
+    考古学: 考古学
+    博物: 博物学
+    人类学: 人類学
+    神秘学: オカルト
+    电子学: 電子工学
+    科学: 科学
+    天文学: 科学（天文学）
+    生物学: 科学（生物学）
+    植物学: 科学（植物学）
+    化学: 科学（化学）
+    密码学: 科学（暗号学）
+    工程学: 科学（工学）
+    司法科学: 科学（鑑識）
+    地质学: 科学（地質学）
+    数学: 科学（数学）
+    气象学: 科学（気象学）
+    药学: 科学（薬学）
+    物理学: 科学（物理学）
+    动物学: 科学（動物学）
+    克苏鲁神话: クトゥルフ神話
+    职业: 職業
+    年龄: 年齢
+
+subsystems:
+  sanity_check:
+    display: {ja: 正気度判定}
+  skill_growth:
+    display: {ja: 技能成長}
+  spend_luck:
+    display: {ja: 幸運}
+  opposed_check:
+    display: {ja: 対抗判定}
+  random_madness:
+    display: {ja: 狂気症状}
+    tables:
+      temp:
+        display: {ja: 一時的狂気}
+        aliases: [一時的, 一時, temporary]
+        entries:
+          - "記憶喪失：探索者は最後にいた安全な場所だけを覚えており、そこから現在地までの記憶を失う。"
+          - "心因性障害：心理的な失明、難聴、または身体の一部を失ったような感覚に陥る。"
+          - "暴力衝動：周囲を見境なく傷つけようとする暴力的な行動に陥る。"
+          - "偏執：誰もが自分を傷つけようとしているという強い妄想に陥る。"
+          - "依存：何らかの理由で特定の人物を精神的な支えとして強く頼る。"
+          - "失神：その場で意識を失う。"
+          - "逃避：あらゆる手段を使って現場から逃れようとする。"
+          - "ヒステリー：笑う、泣く、叫ぶ、怯えるなど、極端な感情反応を示す。"
+      long:
+        display: {ja: 長期の狂気}
+        aliases: [長期, long-term]
+        entries:
+          - "恐怖症：閉所恐怖症や高所恐怖症など、特定の対象への恐怖症を発症する。"
+          - "躁状態：窃盗癖や放火癖など、制御しにくい衝動的な症状を発症する。"
+          - "幻覚：現実には存在しないものを継続的に知覚する。"
+          - "偏執：強い疑念と被害妄想が長く続く。"
+          - "解離性障害：人格の分裂や記憶の欠落が生じる。"
+          - "強迫症：特定の行動や確認を繰り返さずにはいられなくなる。"
+          - "抑うつ：深刻な抑うつ状態に陥る。"
+          - "心的外傷後ストレス障害：恐怖体験による心理的な傷が長期間続く。"
+      indefinite:
+        display: {ja: 不定の狂気}
+        aliases: [不定, indefinite]
+        entries:
+          - "周囲のすべてが自分を狙っているという、強烈な被害妄想に取りつかれる。"
+          - "手洗いや施錠確認など、反復行動を自分で止められなくなる。"
+          - "自分が世界から切り離されたように感じる、深刻な解離症状が現れる。"
+          - "悪夢と不眠が続き、精神が著しく衰弱する。"
+          - "特定の色や音に対して、極端な恐怖と拒絶反応を示す。"
+          - "普段とはまったく異なる第二の人格が現れる。"
+          - "時間の感覚を失い、時間が逆行または停止していると信じる。"
+          - "自分が人ならざる生物へ変化したと確信する。"
+
+commands:
+  クトゥルフ: {action: make_char}
+  正気度: {tool: sanity_check}
+  正気度判定: {tool: sanity_check}
+  sanチェック: {tool: sanity_check}
+  成長: {tool: skill_growth}
+  成長判定: {tool: skill_growth}
+  幸運消費: {tool: spend_luck}
+  対抗: {tool: opposed_check}
+  一時的狂気: {tool: random_madness, args: {table: temp}}
+  長期の狂気: {tool: random_madness, args: {table: long}}
+  不定の狂気: {tool: random_madness, args: {table: indefinite}}
+
+expertise:
+  ja: "# クトゥルフ神話TRPG（CoC 7版）— KP\n流血表現そのものより心理的恐怖を重視し、真相は段階的に明かしてください。探索を中心に進め、手掛かりは物語を前進させ、失敗も停滞ではなく代償や別経路として物語を動かします。本当に恐怖へ直面した場面で正気度判定を行い、成功段階、ボーナス・ダイス／ペナルティ・ダイス、クリティカル／ファンブルはEngineの計算結果に従って描写してください。"
+
+sheet:
+  label: CoC 7版（日本語）
