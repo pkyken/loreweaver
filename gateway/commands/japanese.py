@@ -1,8 +1,9 @@
 """Japanese command aliases layered over the core EN/ZH command router.
 
-The core router and ``CommandSpec`` remain wire-compatible with upstream.  This
-module only adds a Japanese input dialect and Japanese-first help rendering to
-the package-level ``CommandRouter`` exported by :mod:`gateway.commands`.
+The core router and ``CommandSpec`` remain wire-compatible with upstream. This
+module adds a Japanese input dialect, Japanese-first help rendering, and the
+third room locale to the package-level ``CommandRouter`` exported by
+:mod:`gateway.commands`.
 """
 
 from __future__ import annotations
@@ -13,6 +14,7 @@ from gateway.commands.rooms import _is_keeper
 from gateway.commands.router import _COMMAND_TOKEN_RE
 from gateway.commands.router import CommandRouter as _CoreCommandRouter
 from gateway.commands.types import CommandCtx, CommandSpec
+from infra.i18n import get_i18n
 
 
 JAPANESE_COMMAND_ALIASES: dict[str, tuple[str, ...]] = {
@@ -64,13 +66,27 @@ JAPANESE_COMMAND_ALIASES: dict[str, tuple[str, ...]] = {
     "help": ("ヘルプ",),
 }
 
+_LANGUAGE_ALIASES = {
+    "en": "en",
+    "english": "en",
+    "英語": "en",
+    "zh": "zh",
+    "中文": "zh",
+    "中国語": "zh",
+    "簡体字中国語": "zh",
+    "ja": "ja",
+    "jp": "ja",
+    "japanese": "ja",
+    "日本語": "ja",
+}
+
 
 def _is_ja(locale: str) -> bool:
     return locale.casefold().startswith("ja")
 
 
 class CommandRouter(_CoreCommandRouter):
-    """Core router plus a Japanese command-name dialect."""
+    """Core router plus a Japanese command-name and locale dialect."""
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
@@ -115,6 +131,17 @@ class CommandRouter(_CoreCommandRouter):
         # English aliases, Chinese aliases, inline rolls, and dynamically
         # discovered rule-pack words continue through the upstream path.
         return super().resolve(text, locale)
+
+    async def cmd_language(self, ctx: CommandCtx) -> str:
+        """Set the shared room locale, accepting Japanese language names as aliases."""
+        locale = _LANGUAGE_ALIASES.get(ctx.args.strip().casefold())
+        if locale is None:
+            return ctx.i18n.t("commands.language.usage")
+        if not _is_keeper(ctx.raw_ctx):
+            return ctx.fail(ctx.i18n.t("rooms.denied"))
+        await ctx.services.store.state_set(ctx.chat_key, "chat_locale", locale)
+        ctx.raw_ctx.locale = locale
+        return get_i18n(locale).t("commands.language.done")
 
     async def cmd_help(self, ctx: CommandCtx) -> str:
         if not _is_ja(ctx.locale):
