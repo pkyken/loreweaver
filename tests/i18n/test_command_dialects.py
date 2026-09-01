@@ -5,6 +5,7 @@ from agent.services import build_services
 from core.dice_engine import seed_dice
 from core.rulepacks import load_rulepack
 from gateway.commands import CommandRouter
+from gateway.commands.japanese import JAPANESE_COMMAND_ALIASES
 from infra.config import Settings
 from infra.embeddings import FakeEmbeddings
 from infra.llm import FakeLLM
@@ -26,15 +27,47 @@ async def test_roll_dialects_are_numerically_consistent():
     router = CommandRouter(services)
     en = AgentCtx(chat_key="cli:dm:t", user_id="u1", locale="en")
     zh = AgentCtx(chat_key="cli:dm:t", user_id="u1", locale="zh")
+    ja = AgentCtx(chat_key="cli:dm:t", user_id="u1", locale="ja")
 
     seed_dice(91)
     en_result = await router.dispatch(en, "/roll 2d8+1")
     seed_dice(91)
     zh_result = await router.dispatch(zh, ".r 2d8+1")
+    seed_dice(91)
+    ja_result = await router.dispatch(ja, ".ダイス 2d8+1")
 
     assert en_result is not None
     assert zh_result is not None
-    assert _total(en_result) == _total(zh_result)
+    assert ja_result is not None
+    assert _total(en_result) == _total(zh_result) == _total(ja_result)
+    assert ja_result.startswith("ダイス:")
+
+
+def test_japanese_aliases_resolve_to_the_expected_canonical_commands():
+    router = CommandRouter(_services())
+
+    for canonical, aliases in JAPANESE_COMMAND_ALIASES.items():
+        for alias in aliases:
+            resolved = router.resolve(f"。{alias} sample", "ja-JP")
+            assert resolved is not None, alias
+            spec, args = resolved
+            assert spec.canonical == canonical, alias
+            assert args == "sample"
+
+
+async def test_japanese_help_prefers_japanese_command_names():
+    router = CommandRouter(_services())
+    ja = AgentCtx(chat_key="cli:dm:t", user_id="u1", locale="ja-JP")
+
+    result = await router.dispatch(ja, ".ヘルプ")
+
+    assert result is not None
+    assert result.startswith("コマンド:")
+    assert ".ダイス" in result
+    assert ".判定" in result
+    assert ".キャラシート" in result
+    assert ".ヘルプ" in result
+    assert "KPには卓を運営するための追加コマンドがあります。" in result
 
 
 def test_slash_definitions_include_core_commands_and_valid_names():
