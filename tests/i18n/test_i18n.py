@@ -65,6 +65,21 @@ def test_zh_override_returns_zh_value():
     assert I18n(locale="zh").t("common.yes") == "是"
 
 
+def test_regional_locale_resolves_to_installed_base_catalog(tmp_path):
+    base = _make_catalog_dir(tmp_path)
+
+    ja = I18n(locale="ja-JP", base_dir=base)
+    zh = I18n(locale="zh_CN", base_dir=base)
+    en = I18n(locale="en-US", base_dir=base)
+
+    assert ja.locale == "ja"
+    assert ja.t("greeting.hello", name="Bob") == "こんにちは、Bobさん！"
+    assert zh.locale == "zh"
+    assert zh.t("greeting.hello", name="Bob") == "你好，Bob！"
+    assert en.locale == "en"
+    assert en.t("greeting.hello", name="Bob") == "Hello, Bob!"
+
+
 def test_missing_ja_key_falls_back_to_en(tmp_path):
     base = _make_catalog_dir(tmp_path)
     i18n = I18n(locale="ja", base_dir=base)
@@ -138,11 +153,13 @@ def test_module_level_get_i18n_defaults_to_en():
 
 def test_module_level_get_i18n_accepts_locale_override():
     assert get_i18n("ja").locale == "ja"
+    assert get_i18n("ja-JP").locale == "ja"
 
 
 def test_module_level_t_supports_locale_kwarg():
     assert t_("common.yes") == "Yes"
     assert t_("common.yes", locale="ja") == "はい"
+    assert t_("common.yes", locale="ja-JP") == "はい"
 
 
 def test_module_level_t_missing_key_returns_key():
