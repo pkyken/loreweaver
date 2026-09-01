@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from pathlib import Path
 import runpy
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 V2 = ROOT / "scripts" / "_apply_coc7_ja_once_v2.py"
