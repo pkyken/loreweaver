@@ -1,13 +1,13 @@
 {
-  "prep_script.applied": "{index}. {tool} -> {result}",
-  "prep_script.done": "Applied {count} operation(s):\n{results}",
-  "prep_script.empty": "The script planned nothing. Only plan(tool, args) has any effect.",
-  "prep_script.failed": "{index}. {tool} FAILED: {error} — stopped here; earlier operations stand.",
-  "prep_script.invalid": "The script could not produce a plan: {error}",
-  "prep_script.source_usage": "Give exactly one of script (inline JavaScript) or script_ref (an installed pack's script, e.g. \"packid/prep/setup.js\").",
-  "prep_script.ref_not_found": "No installed pack script at \"{ref}\" — check the pack id and path (.import-style pack-relative reference).",
+  "prep_script.applied": "{index}. {tool} → {result}",
+  "prep_script.done": "{count}件の操作を適用しました:\n{results}",
+  "prep_script.empty": "スクリプトは操作を計画しませんでした。効果があるのはplan(tool, args)だけです。",
+  "prep_script.failed": "{index}. {tool} 失敗: {error} — ここで停止しました。それ以前の操作は適用済みです。",
+  "prep_script.invalid": "スクリプトから実行計画を作成できませんでした: {error}",
+  "prep_script.source_usage": "script（インラインJavaScript）またはscript_ref（インストール済みパック内のスクリプト。例: \"packid/prep/setup.js\"）のどちらか一方だけを指定してください。",
+  "prep_script.ref_not_found": "インストール済みパック内にスクリプト\"{ref}\"が見つかりません。パックIDとパス（.importと同じパック相対参照）を確認してください。",
   "prep_script.operation": "{index}. {tool} {args}",
-  "prep_script.preview": "Planned {count} operation(s) — nothing has run yet. Call again with apply=true to carry them out.\n{operations}",
-  "prep_script.unavailable": "The plan cannot be applied here: this room has no toolset bound.",
-  "prep_script.unreachable": "This plan names tools that cannot be reached here: {tools}. Nothing was applied — a plan is validated whole, so it never runs half of itself."
+  "prep_script.preview": "{count}件の操作を計画しました。まだ実行していません。適用するにはapply=trueでもう一度呼び出してください。\n{operations}",
+  "prep_script.unavailable": "このルームにはツールセットが割り当てられていないため、計画を適用できません。",
+  "prep_script.unreachable": "この環境では使用できないツールが計画に含まれています: {tools}。操作は一件も適用されませんでした。計画は全体を検証するため、一部だけ実行されることはありません。"
 }
