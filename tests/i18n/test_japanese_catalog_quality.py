@@ -1,0 +1,71 @@
+from __future__ import annotations
+
+import json
+import string
+from pathlib import Path
+
+
+_REPO_ROOT = Path(__file__).resolve().parents[2]
+_LOCALES = _REPO_ROOT / "locales"
+
+
+def _catalog_files(locale: str) -> dict[str, Path]:
+    directory = _LOCALES / locale
+    return {path.name: path for path in sorted(directory.glob("*.json"))}
+
+
+def _load(path: Path) -> dict[str, str]:
+    data = json.loads(path.read_text(encoding="utf-8"))
+    assert isinstance(data, dict), path
+    assert all(isinstance(key, str) and isinstance(value, str) for key, value in data.items()), path
+    return data
+
+
+def _fields(template: str) -> set[str]:
+    fields: set[str] = set()
+    for _, field_name, _, _ in string.Formatter().parse(template):
+        if field_name:
+            fields.add(field_name.split("!", 1)[0].split(":", 1)[0])
+    return fields
+
+
+def test_japanese_catalog_has_file_and_key_parity_with_english() -> None:
+    english_files = _catalog_files("en")
+    japanese_files = _catalog_files("ja")
+
+    assert japanese_files.keys() == english_files.keys()
+    for filename, english_path in english_files.items():
+        english = _load(english_path)
+        japanese = _load(japanese_files[filename])
+        assert japanese.keys() == english.keys(), filename
+
+
+def test_japanese_catalog_values_are_non_empty_and_preserve_placeholders() -> None:
+    english_files = _catalog_files("en")
+    japanese_files = _catalog_files("ja")
+
+    for filename, english_path in english_files.items():
+        english = _load(english_path)
+        japanese = _load(japanese_files[filename])
+        for key, english_value in english.items():
+            japanese_value = japanese[key]
+            assert japanese_value.strip(), f"{filename}:{key}"
+            assert _fields(japanese_value) == _fields(english_value), f"{filename}:{key}"
+
+
+def test_priority_player_facing_catalogs_are_not_untranslated_copies() -> None:
+    # Technical literals and structured command tokens may intentionally remain
+    # identical. Long natural-language values in these high-traffic catalogs may not.
+    priority = ("battle.json", "commands.json", "companion.json", "kp_tools.json", "prompt.json")
+    untranslated: list[str] = []
+
+    for filename in priority:
+        english = _load(_LOCALES / "en" / filename)
+        japanese = _load(_LOCALES / "ja" / filename)
+        for key, english_value in english.items():
+            if len(english_value.strip()) < 16:
+                continue
+            if english_value == japanese[key]:
+                untranslated.append(f"{filename}:{key}")
+
+    assert not untranslated, "Untranslated Japanese values:\n" + "\n".join(untranslated)
