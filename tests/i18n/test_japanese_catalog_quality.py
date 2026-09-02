@@ -8,6 +8,32 @@ from pathlib import Path
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 _LOCALES = _REPO_ROOT / "locales"
 
+# These values intentionally contain only placeholders, separators, or other
+# language-neutral formatting. Keeping the Japanese value identical is correct;
+# translating them would add noise without changing anything shown to players.
+_INTENTIONALLY_IDENTICAL_PRIORITY_VALUES = {
+    "battle.json:battle.report.md.stat_row",
+    "battle.json:battle.report.stat_line",
+    "commands.json:commands.panel.list_item",
+    "companion.json:companion.sheet.name_line",
+    "kp_tools.json:kp_tools.character.sheet.field_line",
+    "kp_tools.json:kp_tools.character.sheet.meter_line",
+    "kp_tools.json:kp_tools.character.sheet.skill_line",
+    "kp_tools.json:kp_tools.dice.hp.status_line",
+    "kp_tools.json:kp_tools.dice.skill_check.modifier_line",
+    "kp_tools.json:kp_tools.initiative.list_item",
+    "kp_tools.json:kp_tools.know.clock.event_line",
+    "kp_tools.json:kp_tools.know.note.get_done",
+    "kp_tools.json:kp_tools.know.note.list_item",
+    "kp_tools.json:kp_tools.know.search.divider",
+    "kp_tools.json:kp_tools.know.summary.truth_item",
+    "kp_tools.json:kp_tools.subsystem.draw.result",
+    "kp_tools.json:kp_tools.subsystem.script_roll_line",
+    "prompt.json:prompt.divider",
+    "prompt.json:prompt.game_state.clue_line",
+    "prompt.json:prompt.game_state.solo_line",
+}
+
 
 def _catalog_files(locale: str) -> dict[str, Path]:
     directory = _LOCALES / locale
@@ -63,9 +89,12 @@ def test_priority_player_facing_catalogs_are_not_untranslated_copies() -> None:
         english = _load(_LOCALES / "en" / filename)
         japanese = _load(_LOCALES / "ja" / filename)
         for key, english_value in english.items():
+            entry = f"{filename}:{key}"
+            if entry in _INTENTIONALLY_IDENTICAL_PRIORITY_VALUES:
+                continue
             if len(english_value.strip()) < 16:
                 continue
             if english_value == japanese[key]:
-                untranslated.append(f"{filename}:{key}")
+                untranslated.append(entry)
 
     assert not untranslated, "Untranslated Japanese values:\n" + "\n".join(untranslated)
