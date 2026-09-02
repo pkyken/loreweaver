@@ -16,7 +16,6 @@ from gateway.commands.router import CommandRouter as _CoreCommandRouter
 from gateway.commands.types import CommandCtx, CommandSpec
 from infra.i18n import get_i18n
 
-
 JAPANESE_COMMAND_ALIASES: dict[str, tuple[str, ...]] = {
     "roll": ("ダイス", "ロール"),
     "hidden_roll": ("秘匿ダイス", "シークレットダイス"),
