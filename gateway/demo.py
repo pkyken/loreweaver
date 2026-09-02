@@ -9,14 +9,15 @@ _LEGACY_SETUP_REQUESTS = ("upload the demo module",)  # i18n-exempt: parser toke
 
 def is_guided_demo_request(text: str) -> bool:
     """Whether the scripted fallback received an explicit guided setup action."""
-    lowered = text.strip().lower()
+    lowered = text.strip().casefold()
+    i18n = get_i18n()
     return lowered in {
-        get_i18n("en").t("tui.demo.action").casefold(),
-        get_i18n("zh").t("tui.demo.action").casefold(),
+        i18n.with_locale(locale).t("tui.demo.action").casefold()
+        for locale in i18n.available_locales()
     }
 
 
 def is_demo_setup_request(text: str) -> bool:
     """Whether the fallback would invoke its destructive sample-module setup tools."""
-    lowered = text.strip().lower()
+    lowered = text.strip().casefold()
     return is_guided_demo_request(lowered) or lowered in _LEGACY_SETUP_REQUESTS

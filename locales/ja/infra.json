@@ -1,0 +1,5 @@
+{
+  "infra.llm.fake_script_exhausted": "FakeLLMのスクリプトを使い切りました。残りの定義済み応答はありません。",
+  "infra.llm.fake_not_configured": "FakeLLMには `script` または `responder` の設定が必要です。",
+  "infra.vector.dimension_mismatch": "ベクトルの次元が一致しません。期待値: {expected}、実際: {actual}。"
+}

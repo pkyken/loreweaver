@@ -2,8 +2,10 @@
 
 Catalogs live under ``locales/{locale}/*.json`` (flat, namespaced keys, e.g.
 ``"dice.result"``). All ``*.json`` files in a locale directory are merged
-into one flat dict. Lookup falls back ``requested locale -> en -> the key
-itself`` and never raises on a missing key or a missing format parameter.
+into one flat dict. Regional tags resolve to an installed exact catalog first,
+then their base language (``ja-JP`` -> ``ja``). Lookup falls back
+``requested locale -> en -> the key itself`` and never raises on a missing key
+or a missing format parameter.
 """
 
 from __future__ import annotations
@@ -23,6 +25,22 @@ _REPO_ROOT = Path(__file__).resolve().parent.parent
 _DEFAULT_BASE_DIR = _REPO_ROOT / "locales"
 
 _missing_key_warned: set[tuple[str, str, str]] = set()
+
+
+def _resolve_locale(base_dir: Path, locale: str) -> str:
+    """Resolve a locale tag to an installed catalog, preferring exact then base language."""
+    requested = str(locale or DEFAULT_LOCALE).strip().replace("_", "-")
+    if not requested:
+        return DEFAULT_LOCALE
+
+    candidates: list[str] = []
+    for candidate in (requested, requested.casefold(), requested.split("-", 1)[0].casefold()):
+        if candidate and candidate not in candidates:
+            candidates.append(candidate)
+    for candidate in candidates:
+        if (base_dir / candidate).is_dir():
+            return candidate
+    return candidates[-1]
 
 
 @cache
@@ -63,7 +81,7 @@ class I18n:
         if not base.is_absolute():
             base = _REPO_ROOT / base
         self._base_dir = base
-        self._locale = locale
+        self._locale = _resolve_locale(base, locale)
         self._catalog = _load_catalog(str(self._base_dir), self._locale)
 
     @property

@@ -1,0 +1,8 @@
+{
+  "character.unknown_template": "不明なキャラクターテンプレートです: {template_name}",
+  "character.validation.notice": "ルール検証によりキャラクターシートを調整しました: {items}",
+  "character.validation.warning_notice": "ルール検証で問題が見つかりました。次の項目は変更していません: {items}",
+  "character.validation.clamped_item": "{path} {original} → {corrected}（上限・下限 {limit}、{code}）",
+  "character.validation.budget_item": "{path} の消費値 {value}、予算 {limit}（{code}）",
+  "character.validation.separator": "、"
+}

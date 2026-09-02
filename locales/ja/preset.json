@@ -1,0 +1,15 @@
+{
+  "preset.commands.help": "インポートしたSillyTavern補完プリセットをルームの文体レイヤーとして使用します: .preset [list] | import <サーバーファイル> | enable <id> | disable | show <id>。ルームごとに1つだけ有効化できます。サンプリング設定は表示されますが適用されません。",
+  "preset.commands.usage": "使用方法: .preset [list] | import <サーバーファイル> | enable <id> | disable | show <id>",
+  "preset.commands.denied": "プリセットはルームのプロンプトを変更するため、インポートや切り替えを行えるのは認証済みKPだけです。",
+  "preset.commands.no_file": "{path}にあるプリセットファイルを読み取れませんでした。",
+  "preset.commands.import_failed": "プリセットのインポートに失敗しました: {error}",
+  "preset.commands.imported": "プリセット「{id}」をインポートしました: プロンプト{prompts}件、有効{effective}件、警告{warnings}件。`.preset enable {id}`で有効化できます。",
+  "preset.commands.unknown": "「{id}」という名前のプリセットはインストールされていません（`.preset list`で確認してください）。",
+  "preset.commands.enabled": "プリセット「{id}」をこのルームの文体レイヤーとして有効化しました。",
+  "preset.commands.disabled": "このルームのプリセット文体レイヤーを無効化しました。",
+  "preset.commands.none": "なし",
+  "preset.commands.list_empty": "プリセットはインストールされていません。KPは`.preset import <サーバーファイル>`でインポートできます。",
+  "preset.commands.list": "インストール済みプリセット（✓ = このルームで有効、現在: {enabled}）:\n{items}",
+  "preset.commands.show": "プリセット「{id}」（{name}）: プロンプト{prompts}件、有効{effective}件、サンプリング: {sampling}、マクロ: {macros}、警告: {warnings}。"
+}

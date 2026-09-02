@@ -1,0 +1,13 @@
+{
+  "prep_script.applied": "{index}. {tool} → {result}",
+  "prep_script.done": "{count}件の操作を適用しました:\n{results}",
+  "prep_script.empty": "スクリプトは操作を計画しませんでした。効果があるのはplan(tool, args)だけです。",
+  "prep_script.failed": "{index}. {tool} 失敗: {error} — ここで停止しました。それ以前の操作は適用済みです。",
+  "prep_script.invalid": "スクリプトから実行計画を作成できませんでした: {error}",
+  "prep_script.source_usage": "script（インラインJavaScript）またはscript_ref（インストール済みパック内のスクリプト。例: \"packid/prep/setup.js\"）のどちらか一方だけを指定してください。",
+  "prep_script.ref_not_found": "インストール済みパック内にスクリプト\"{ref}\"が見つかりません。パックIDとパス（.importと同じパック相対参照）を確認してください。",
+  "prep_script.operation": "{index}. {tool} {args}",
+  "prep_script.preview": "{count}件の操作を計画しました。まだ実行していません。適用するにはapply=trueでもう一度呼び出してください。\n{operations}",
+  "prep_script.unavailable": "このルームにはツールセットが割り当てられていないため、計画を適用できません。",
+  "prep_script.unreachable": "この環境では使用できないツールが計画に含まれています: {tools}。操作は一件も適用されませんでした。計画は全体を検証するため、一部だけ実行されることはありません。"
+}

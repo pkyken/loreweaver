@@ -1,0 +1,14 @@
+{
+  "relationships.track.affection": "好感度",
+  "relationships.track.desire": "欲望",
+  "relationships.describe.line": "{subject} → {target}: {tracks}",
+  "relationships.describe.pair": "{label} {value}",
+  "relationships.tools.bad_track": "不明な関係値です。使用可能な関係値: {allowed}",
+  "relationships.tools.bad_delta": "その値は整数として使用できません。",
+  "relationships.tools.adjust.done": "{subject} → {target} の{track}: {old} → {new}（変化量: {delta}）",
+  "relationships.tools.set.done": "{subject} → {target} の{track}を{value}に設定しました。",
+  "relationships.tools.get.empty": "関係値はまだ記録されていません。",
+  "relationships.tools.get.header": "現在の関係:",
+  "relationships.tools.get.item": "- {line}",
+  "relationships.tools.failed": "関係値を更新できませんでした: {error}"
+}

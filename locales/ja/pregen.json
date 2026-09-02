@@ -1,0 +1,21 @@
+{
+  "pregen.commands.blurb_suffix": " · {blurb}",
+  "pregen.commands.claim_corrupt": "「{name}」の保存済みシートを読み取れません。KPにモジュールカードの再インポートを依頼してください。",
+  "pregen.commands.claim_name_conflict": "「{name}」は、すでに別のプレイヤーが作成したキャラクター名として使用されています。KPにそのシートの名前変更または削除を依頼してください。",
+  "pregen.commands.claim_taken": "「{name}」はすでに別のプレイヤーが選択しています。",
+  "pregen.commands.claim_unknown": "「{name}」という作成済みキャラクターはありません（.pc listで確認してください）。",
+  "pregen.commands.claim_usage": "使い方: .pc claim <名前>",
+  "pregen.commands.claimed": "これから「{name}」（{system}）を担当します。シートはあなたの所有として保存され、使用中に設定されました。",
+  "pregen.commands.empty": "作成済みキャラクターはまだありません。KPが`.import <ファイル> world`でモジュールカードをインポートすると追加されます。",
+  "pregen.commands.help": "ルームの作成済みキャラクター一覧を管理します: .pc [list] | .pc claim <名前> | .pc release [名前] — KPがワールドカードをインポートすると一覧へ追加され、プレイヤーは担当するPCを選択できます。",
+  "pregen.commands.line_claimed": "· {name}（{system}）— 選択済み",
+  "pregen.commands.line_free": "· {name}（{system}）— 選択可能",
+  "pregen.commands.list_header": "作成済みキャラクター（{count}名）:",
+  "pregen.commands.reclaimed": "「{name}」（{system}）はすでにあなたのキャラクターです。再び使用中に設定しました。",
+  "pregen.commands.release_free": "「{name}」は誰にも選択されていません。",
+  "pregen.commands.release_not_yours": "「{name}」を解放できるのは、選択したプレイヤーまたはKPだけです。",
+  "pregen.commands.release_unknown": "「{name}」という作成済みキャラクターはありません（.pc listで確認してください）。",
+  "pregen.commands.release_usage": "使い方: .pc release <名前>",
+  "pregen.commands.released": "「{name}」を解放しました。再び選択可能です（プレイ済みの複製シートは破棄され、次のプレイヤーは初期状態から開始します）。",
+  "pregen.commands.usage": "使い方: .pc [list] | .pc claim <名前> | .pc release <名前>"
+}
