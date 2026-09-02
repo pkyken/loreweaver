@@ -1,17 +1,20 @@
 from __future__ import annotations
 
 import json
+import re
 import string
 from pathlib import Path
 
 
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 _LOCALES = _REPO_ROOT / "locales"
+_FORMAT_FIELD_RE = re.compile(r"\{[^{}]+\}")
+_ENGLISH_WORD_RE = re.compile(r"[A-Za-z]+(?:['’-][A-Za-z]+)?")
 
 # These values intentionally contain only placeholders, separators, or other
 # language-neutral formatting. Keeping the Japanese value identical is correct;
 # translating them would add noise without changing anything shown to players.
-_INTENTIONALLY_IDENTICAL_PRIORITY_VALUES = {
+_INTENTIONALLY_IDENTICAL_VALUES = {
     "battle.json:battle.report.md.stat_row",
     "battle.json:battle.report.stat_line",
     "commands.json:commands.panel.list_item",
@@ -55,6 +58,13 @@ def _fields(template: str) -> set[str]:
     return fields
 
 
+def _looks_like_english_prose(value: str) -> bool:
+    """Return true for sentences, while ignoring placeholder-only format rows."""
+    without_fields = _FORMAT_FIELD_RE.sub(" ", value)
+    words = [word for word in _ENGLISH_WORD_RE.findall(without_fields) if len(word) >= 2]
+    return len(words) >= 4 and sum(len(word) for word in words) >= 18
+
+
 def test_japanese_catalog_has_file_and_key_parity_with_english() -> None:
     english_files = _catalog_files("en")
     japanese_files = _catalog_files("ja")
@@ -79,22 +89,17 @@ def test_japanese_catalog_values_are_non_empty_and_preserve_placeholders() -> No
             assert _fields(japanese_value) == _fields(english_value), f"{filename}:{key}"
 
 
-def test_priority_player_facing_catalogs_are_not_untranslated_copies() -> None:
-    # Technical literals and structured command tokens may intentionally remain
-    # identical. Long natural-language values in these high-traffic catalogs may not.
-    priority = ("battle.json", "commands.json", "companion.json", "kp_tools.json", "prompt.json")
+def test_japanese_catalogs_do_not_copy_english_prose() -> None:
     untranslated: list[str] = []
 
-    for filename in priority:
-        english = _load(_LOCALES / "en" / filename)
+    for filename, english_path in _catalog_files("en").items():
+        english = _load(english_path)
         japanese = _load(_LOCALES / "ja" / filename)
         for key, english_value in english.items():
             entry = f"{filename}:{key}"
-            if entry in _INTENTIONALLY_IDENTICAL_PRIORITY_VALUES:
+            if entry in _INTENTIONALLY_IDENTICAL_VALUES:
                 continue
-            if len(english_value.strip()) < 16:
-                continue
-            if english_value == japanese[key]:
+            if english_value == japanese[key] and _looks_like_english_prose(english_value):
                 untranslated.append(entry)
 
-    assert not untranslated, "Untranslated Japanese values:\n" + "\n".join(untranslated)
+    assert not untranslated, "Untranslated Japanese prose:\n" + "\n".join(untranslated)
