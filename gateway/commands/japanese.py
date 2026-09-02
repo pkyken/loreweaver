@@ -72,7 +72,6 @@ _LANGUAGE_ALIASES = {
     "zh": "zh",
     "中文": "zh",
     "中国語": "zh",
-    "簡体字中国語": "zh",
     "ja": "ja",
     "jp": "ja",
     "japanese": "ja",
