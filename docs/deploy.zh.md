@@ -75,7 +75,7 @@ cd ~/loreweaver && git pull && uv sync && sudo systemctl restart loreweaver
 
 | 变量 | 作用 | 默认值 |
 |---|---|---|
-| `TRPG_LLM__PROVIDER` | `openai`（外加预设：`deepseek`、`groq`、`openrouter`、`together`、`ollama`、`lmstudio` 等）、双模式的 `chatgpt` / `gpt-subscription`、订阅制的 `supergrok`，或者原生的 `anthropic` / `gemini` | `openai` |
+| `TRPG_LLM__PROVIDER` | `openai`（外加预设：`opencode-go`、`deepseek`、`groq`、`openrouter`、`together`、`ollama`、`lmstudio` 等）、双模式的 `chatgpt` / `gpt-subscription`、订阅制的 `supergrok`，或者原生的 `anthropic` / `gemini` | `openai` |
 | `TRPG_LLM__API_KEY` | 服务商或代理的 API key。订阅制的 OAuth 通道不用它；对普通的 API key 服务商来说，**留空就是离线示例守秘人** | *（空）* |
 | `TRPG_LLM__BASE_URL` | OpenAI 兼容接口的地址。对 `chatgpt` / `gpt-subscription` 来说，显式填了就走代理，留空就走订阅 OAuth | 按服务商预设 |
 | `TRPG_LLM__CHAT_MODEL` | 对话模型 id | `gpt-4o` |

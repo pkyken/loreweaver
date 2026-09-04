@@ -35,7 +35,7 @@ TRPG_LLM__REASONING_EFFORT=max
 
 ```console
 $ .model list
-Providers — OpenAI-compatible: deepseek, fireworks, groq, lmstudio, mistral, moonshot, ollama,
+Providers — OpenAI-compatible: opencode-go, deepseek, fireworks, groq, lmstudio, mistral, moonshot, ollama,
 openai, openrouter, together, vllm, xai, zhipu; native: anthropic, gemini; subscription: chatgpt,
 gpt-subscription, supergrok. Any OpenAI-compatible endpoint works by pointing base_url at it.
 Subscription providers need `.model login` first.
@@ -97,6 +97,37 @@ TRPG_SCRIBE__REASONING_EFFORT=low
 1. `TRPG_DIRECTOR__IMAGES=1`；
 2. 配好了 `TRPG_IMAGEGEN__*` 端点；
 3. 模组自己的资料包允许——如果作者写了 `generation: pack_only`，那是作者的否决权，你这边任何设置都覆盖不了。
+
+如果本机已经运行 ComfyUI，可以不用图像 API key，直接使用内置的 Z-Image-Turbo 工作流：
+
+```dotenv
+TRPG_IMAGEGEN__PROVIDER=comfyui
+TRPG_IMAGEGEN__BASE_URL=http://127.0.0.1:8188
+TRPG_IMAGEGEN__MODEL=z_image_turbo_nvfp4.safetensors
+TRPG_IMAGEGEN__SIZE=1024x1024
+```
+
+ComfyUI 适配器现在分两条路：没有参考图时使用 Z-Image-Turbo；Stage Director 带参考图时，
+先上传到 ComfyUI，再使用它自带的 Qwen Image Edit 2509 工作流。参考图这条路使用基础的
+20 步工作流，不依赖可选的 Lightning LoRA。这是参考图引导的一致性，不是硬性的身份锁定。
+
+本次本机验证使用的是 Windows portable 安装，模型文件放在
+`C:\AI\ComfyUI\ComfyUI_windows_portable` 下的这些目录：
+
+```text
+ComfyUI\models\diffusion_models\z_image_turbo_nvfp4.safetensors
+ComfyUI\models\text_encoders\qwen_3_4b_fp4_mixed.safetensors
+ComfyUI\models\vae\ae.safetensors
+
+# 参考图路线需要：
+ComfyUI\models\diffusion_models\qwen_image_edit_2509_fp8_e4m3fn.safetensors
+ComfyUI\models\text_encoders\qwen_2.5_vl_7b_fp8_scaled.safetensors
+ComfyUI\models\vae\qwen_image_vae.safetensors
+```
+
+启动 `run_nvidia_gpu.bat`，等待 `http://127.0.0.1:8188/system_stats` 可访问，再使用上面的
+Loreweaver 设置启动服务。ComfyUI 的 Z-Image-Turbo 示例工作流可用于手动确认；适配器会
+通过 ComfyUI API 自动提交同一工作流。
 
 ```dotenv
 # TRPG_DIRECTOR__ENABLED=1

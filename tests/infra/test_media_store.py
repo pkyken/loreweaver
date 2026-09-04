@@ -80,6 +80,28 @@ async def test_media_store_is_room_isolated(tmp_path):
         await store.read_bytes("room-b", digest)
 
 
+async def test_media_store_sanitizes_transport_separators_for_windows_paths(tmp_path):
+    store = MediaStore(Store(), tmp_path)
+    room = "tui:group:table"
+    data = _png_bytes(b"windows-room")
+    digest = hashlib.sha256(data).hexdigest()
+
+    record = await store.register_blob(
+        room=room,
+        data=data,
+        mime="image/png",
+        name="handout.png",
+        uploader="keeper",
+    )
+
+    assert record.room == room
+    loaded_record, loaded = await store.read_bytes(room, digest)
+    assert loaded_record == record
+    assert loaded == data
+    assert (tmp_path / "media" / "tui_group_table" / digest).is_file()
+    assert not (tmp_path / "media" / "tui:group:table").exists()
+
+
 async def test_media_store_offer_policy_can_be_overridden_for_audio(tmp_path):
     store = MediaStore(Store(), tmp_path, max_file_bytes=4, room_quota_bytes=4, allowed_mimes=ALLOWED_IMAGE_MIMES | ALLOWED_AUDIO_MIMES)
     data = b"ID3audio"

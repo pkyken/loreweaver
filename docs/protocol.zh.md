@@ -218,7 +218,9 @@ role = "player"  # 或 "keeper"；默认为 "player"
 - `admin_get_config` — `{type:"admin_get_config"}`
 - `admin_set_model` — 切换实时 LLM provider/模型，并可设置该 provider 的 API key / `base_url`。字段省略时，只有 endpoint 未变才复用已保存凭据；显式空值会清空字段。提供新的 `base_url` 却不同时提供新 `api_key` 时，旧 key 会被清空，绝不会发往新 endpoint：
   `{type:"admin_set_model", provider:string, chat_model?:string, api_key?:string, base_url?:string}`
-- `admin_set_imagegen` — 配置 OpenAI-compatible 生图 endpoint；遵循相同的 endpoint/key 隔离规则：
+- `admin_set_imagegen` — 配置 OpenAI-compatible 生图 endpoint，或本机的 `comfyui` provider。
+  ComfyUI 使用原生 `/prompt`/`/history`/`/view` API，不需要 API key；其他 provider 遵循相同的
+  endpoint/key 隔离规则：
   `{type:"admin_set_imagegen", provider:string, base_url?:string, model:string, api_key?:string, size?:string}`
 - `admin_list_models` — 获取某 provider 的实时模型列表。预览不同 `base_url` 时不会复用 saved/current key，除非同一请求明确提供 key；回复中也包含当前 `imagegen` 状态：
   `{type:"admin_list_models", provider?:string, api_key?:string, base_url?:string}`

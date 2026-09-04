@@ -98,7 +98,7 @@ All settings use the `TRPG_` env prefix with `__` for nesting (see
 
 | Variable | Purpose | Default |
 |---|---|---|
-| `TRPG_LLM__PROVIDER` | `openai` (+ presets: `deepseek`, `groq`, `openrouter`, `together`, `ollama`, `lmstudio`, …), dual-mode `chatgpt` / `gpt-subscription`, subscription `supergrok`, or native `anthropic` / `gemini` | `openai` |
+| `TRPG_LLM__PROVIDER` | `openai` (+ presets: `opencode-go`, `deepseek`, `groq`, `openrouter`, `together`, `ollama`, `lmstudio`, …), dual-mode `chatgpt` / `gpt-subscription`, subscription `supergrok`, or native `anthropic` / `gemini` | `openai` |
 | `TRPG_LLM__API_KEY` | provider/proxy API key — not used by a subscription OAuth path; **blank = offline demo Keeper** for normal API-key providers | *(empty)* |
 | `TRPG_LLM__BASE_URL` | OpenAI-compatible base URL; an explicit value selects the proxy path for `chatgpt` / `gpt-subscription`, while blank selects subscription OAuth | provider preset |
 | `TRPG_LLM__CHAT_MODEL` | chat model id | `gpt-4o` |

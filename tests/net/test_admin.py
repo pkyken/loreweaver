@@ -37,7 +37,7 @@ from gateway.session import SessionSource
 from infra.config import ImageGenSettings, LLMSettings, Settings, TuiSettings
 from infra.embeddings import FakeEmbeddings
 from infra.i18n import get_i18n
-from infra.imagegen import IMAGEGEN_PRESETS
+from infra.imagegen import IMAGEGEN_PRESETS, ComfyUIImageGen
 from infra.llm import FakeLLM, assistant_text
 from infra.media_store import ALLOWED_MEDIA_MIMES, MediaError, MediaStore
 from infra.providers import PRESETS, MutableLLM
@@ -2166,6 +2166,42 @@ async def test_admin_set_imagegen_configures_runtime_and_masks_key():
             "base_url": "",
         }
 
+        await ws.close()
+    finally:
+        await server.close()
+
+
+async def test_admin_set_imagegen_comfyui_works_without_an_api_key():
+    services = _services()
+    keystore = Keystore()
+    keeper_key = keystore.add(room="arkham", name="Keeper", role="keeper")
+    server = TuiServer(services, keystore, port=0)
+    url = await _start(server)
+    try:
+        ws, *_ = await _connect_and_join(url, keeper_key, "Keeper")
+        updated = await _send(
+            ws,
+            {
+                "type": "admin_set_imagegen",
+                "provider": "comfyui",
+                "base_url": "http://127.0.0.1:8188",
+                "model": "z_image_turbo_nvfp4.safetensors",
+            },
+        )
+
+        assert updated["type"] == "admin_config"
+        assert updated["imagegen"]["provider"] == "comfyui"
+        assert updated["imagegen"]["configured"] is True
+        assert updated["imagegen"]["has_key"] is False
+        assert services.settings.imagegen.api_key == ""
+        assert isinstance(services.imagegen, ComfyUIImageGen)
+        assert await services.imagegen_runtime_config.get() == {
+            "provider": "comfyui",
+            "model": "z_image_turbo_nvfp4.safetensors",
+            "size": "1024x1024",
+            "api_key": "",
+            "base_url": "http://127.0.0.1:8188",
+        }
         await ws.close()
     finally:
         await server.close()

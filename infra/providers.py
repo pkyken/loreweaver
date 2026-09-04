@@ -24,6 +24,7 @@ logger = logging.getLogger(__name__)
 
 PRESETS: dict[str, str] = {
     "openai": "",
+    "opencode-go": "https://opencode.ai/zen/go/v1",
     "deepseek": "https://api.deepseek.com/v1",
     "openrouter": "https://openrouter.ai/api/v1",
     "groq": "https://api.groq.com/openai/v1",
@@ -59,7 +60,9 @@ def provider_cost_class(llm: LLMSettings) -> str:
     provider = (llm.provider or "openai").casefold()
     if provider in _AUTHLESS_LOCAL_PROVIDERS:
         return "local"
-    if provider == "supergrok" or (provider in CHATGPT_SUBSCRIPTION_PROXY_PROVIDERS and not llm.base_url):
+    if provider in {"opencode-go", "supergrok"} or (
+        provider in CHATGPT_SUBSCRIPTION_PROXY_PROVIDERS and not llm.base_url
+    ):
         return "subscription"
     return "paid"
 

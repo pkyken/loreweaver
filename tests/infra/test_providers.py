@@ -19,6 +19,7 @@ from infra.providers import (
     from_gemini_response,
     is_known_provider,
     list_models,
+    provider_cost_class,
     sanitize_gemini_tool_parameters,
     to_anthropic_messages,
     to_anthropic_tools,
@@ -53,6 +54,17 @@ def test_build_llm_selects_openai_compatible_preset(monkeypatch):
 
     assert isinstance(llm.inner, OpenAILLM)
     assert llm._client.init_kwargs["base_url"] == PRESETS["deepseek"]
+
+
+def test_build_llm_selects_opencode_go_preset(monkeypatch):
+    monkeypatch.setattr("infra.llm.AsyncOpenAI", _FakeAsyncOpenAI)
+
+    llm = build_llm(_settings("opencode-go"))
+
+    assert is_known_provider("opencode-go")
+    assert isinstance(llm.inner, OpenAILLM)
+    assert llm._client.init_kwargs["base_url"] == "https://opencode.ai/zen/go/v1"
+    assert provider_cost_class(LLMSettings(provider="opencode-go")) == "subscription"
 
 
 def test_build_llm_explicit_base_url_overrides_preset(monkeypatch):

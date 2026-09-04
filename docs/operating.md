@@ -43,7 +43,7 @@ Most vendors work through the OpenAI-compatible path plus a preset:
 
 ```console
 $ .model list
-Providers — OpenAI-compatible: deepseek, fireworks, groq, lmstudio, mistral, moonshot, ollama,
+Providers — OpenAI-compatible: opencode-go, deepseek, fireworks, groq, lmstudio, mistral, moonshot, ollama,
 openai, openrouter, together, vllm, xai, zhipu; native: anthropic, gemini; subscription: chatgpt,
 gpt-subscription, supergrok. Any OpenAI-compatible endpoint works by pointing base_url at it.
 Subscription providers need `.model login` first.
@@ -125,6 +125,38 @@ Image generation additionally needs all three of these to agree:
 2. a configured `TRPG_IMAGEGEN__*` endpoint,
 3. the module's own kit — and if its author wrote `generation: pack_only`, that is the author's
    call, and nothing you set on your side overrides it.
+
+For a local ComfyUI install, use the built-in Z-Image-Turbo graph instead of an API key:
+
+```dotenv
+TRPG_IMAGEGEN__PROVIDER=comfyui
+TRPG_IMAGEGEN__BASE_URL=http://127.0.0.1:8188
+TRPG_IMAGEGEN__MODEL=z_image_turbo_nvfp4.safetensors
+TRPG_IMAGEGEN__SIZE=1024x1024
+```
+
+The ComfyUI adapter has two lanes: prompt-only requests use Z-Image-Turbo, while requests that
+carry a Stage Director reference image upload it to ComfyUI and use its bundled Qwen Image Edit
+2509 graph. The reference lane uses the base 20-step graph; the optional Lightning LoRA is not
+required. This is reference-guided consistency, not a hard identity lock.
+
+For the Windows portable installation used during local verification, the model files belong in
+the following folders under `C:\AI\ComfyUI\ComfyUI_windows_portable`:
+
+```text
+ComfyUI\models\diffusion_models\z_image_turbo_nvfp4.safetensors
+ComfyUI\models\text_encoders\qwen_3_4b_fp4_mixed.safetensors
+ComfyUI\models\vae\ae.safetensors
+
+# Required for the reference-image lane:
+ComfyUI\models\diffusion_models\qwen_image_edit_2509_fp8_e4m3fn.safetensors
+ComfyUI\models\text_encoders\qwen_2.5_vl_7b_fp8_scaled.safetensors
+ComfyUI\models\vae\qwen_image_vae.safetensors
+```
+
+Start `run_nvidia_gpu.bat`, wait for `http://127.0.0.1:8188/system_stats` to respond, then start
+Loreweaver with the settings above. The bundled graph can be opened from ComfyUI's Z-Image-Turbo
+example workflow; the adapter submits the same graph through ComfyUI's API automatically.
 
 ```dotenv
 # TRPG_DIRECTOR__ENABLED=1

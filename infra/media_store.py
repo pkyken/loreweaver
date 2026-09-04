@@ -434,7 +434,10 @@ class MediaStore:
 
 def _safe_room(room: str) -> str:
     text = str(room or "room")
-    return re.sub(r"[^A-Za-z0-9_.:-]+", "_", text).strip("._") or "room"
+    # Keep the directory name valid on Windows as well as POSIX.  Room/session
+    # keys commonly contain transport separators such as ``:`` (for example
+    # ``tui:group:table``), but ``:`` is not legal in a Windows path segment.
+    return re.sub(r"[^A-Za-z0-9_.-]+", "_", text).strip("._") or "room"
 
 
 def _row_to_record(row: Any) -> MediaRecord:

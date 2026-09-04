@@ -25,3 +25,34 @@ def test_explicit_env_file_overrides_trpg_env_file(tmp_path, monkeypatch):
     settings = Settings(_env_file=str(explicit))
 
     assert settings.locale == "en"
+
+
+def test_settings_can_load_comfyui_imagegen_from_env_file(tmp_path, monkeypatch):
+    for name in (
+        "TRPG_IMAGEGEN__PROVIDER",
+        "TRPG_IMAGEGEN__BASE_URL",
+        "TRPG_IMAGEGEN__MODEL",
+        "TRPG_IMAGEGEN__SIZE",
+    ):
+        monkeypatch.delenv(name, raising=False)
+    env_file = tmp_path / "server.env"
+    env_file.write_text(
+        "\n".join(
+            (
+                "TRPG_IMAGEGEN__PROVIDER=comfyui",
+                "TRPG_IMAGEGEN__BASE_URL=http://127.0.0.1:8188",
+                "TRPG_IMAGEGEN__MODEL=z_image_turbo_nvfp4.safetensors",
+                "TRPG_IMAGEGEN__SIZE=512x512",
+            )
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    monkeypatch.setenv("TRPG_ENV_FILE", str(env_file))
+
+    settings = Settings()
+
+    assert settings.imagegen.provider == "comfyui"
+    assert settings.imagegen.base_url == "http://127.0.0.1:8188"
+    assert settings.imagegen.model == "z_image_turbo_nvfp4.safetensors"
+    assert settings.imagegen.size == "512x512"

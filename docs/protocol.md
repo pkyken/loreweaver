@@ -531,10 +531,12 @@ Client → server:
   key, so it is never sent to the new endpoint. The server remembers credentials
   per provider, so a later switch back to an unchanged endpoint needs no key:
   `{type:"admin_set_model", provider:string, chat_model?:string, api_key?:string, base_url?:string}`
-- `admin_set_imagegen` — configure the OpenAI-compatible image-generation
-  endpoint. It follows the same endpoint/key isolation rule as `admin_set_model`:
-  an omitted key is reusable only for the same endpoint, while changing
-  `base_url` without a new key clears the old key:
+- `admin_set_imagegen` — configure an OpenAI-compatible image-generation endpoint
+  or the local `comfyui` provider. ComfyUI uses its native `/prompt`/`/history`/
+  `/view` API and does not require an API key. Other providers follow the same
+  endpoint/key isolation rule as `admin_set_model`: an omitted key is reusable
+  only for the same endpoint, while changing `base_url` without a new key clears
+  the old key:
   `{type:"admin_set_imagegen", provider:string, base_url?:string, model:string, api_key?:string, size?:string}`
 - `admin_list_models` — fetch a provider's live model catalog (OpenAI-compatible
   `GET /models`). All fields optional: omit to list the current provider; pass

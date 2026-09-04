@@ -6,7 +6,18 @@ import httpx
 import pytest
 
 from infra.config import ImageGenSettings, Settings
-from infra.imagegen import IMAGEGEN_PRESETS, ImageGenError, OpenAICompatImageGen, build_imagegen
+from infra.imagegen import (
+    COMFYUI_API_BASE_URL,
+    COMFYUI_DEFAULT_MODEL,
+    COMFYUI_REFERENCE_MODEL,
+    COMFYUI_REFERENCE_TEXT_ENCODER,
+    COMFYUI_REFERENCE_VAE,
+    IMAGEGEN_PRESETS,
+    ComfyUIImageGen,
+    ImageGenError,
+    OpenAICompatImageGen,
+    build_imagegen,
+)
 from infra.oauth_flows import XAI_API_BASE, XAI_DEFAULT_IMAGE_MODEL, SubscriptionToken
 from infra.runtime_config import CredentialBook
 from infra.store import Store
@@ -179,3 +190,176 @@ def test_build_imagegen_returns_none_when_incomplete():
     # An explicit empty block, not the developer's .env: "incomplete" is what is under test.
     assert build_imagegen(Settings(imagegen=ImageGenSettings())) is None
     assert build_imagegen(Settings(imagegen=ImageGenSettings(provider="openai", model="img"))) is None
+
+
+async def test_comfyui_imagegen_queues_z_image_workflow_and_downloads_history_output():
+    image_bytes = bytes.fromhex(
+        "89504e470d0a1a0a0000000d49484452000000010000000108060000001f15c489"
+        "0000000d49444154789c6360f8ffff3f0005fe02fea7a0a5810000000049454e44ae426082"
+    )
+    seen: dict[str, object] = {}
+    history_calls = 0
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        nonlocal history_calls
+        path = request.url.path
+        if path == "/prompt":
+            body = json.loads(request.content)
+            seen["workflow"] = body["prompt"]
+            return httpx.Response(200, json={"prompt_id": "job-1", "number": 1, "node_errors": {}})
+        if path == "/history/job-1":
+            history_calls += 1
+            if history_calls == 1:
+                return httpx.Response(200, json={})
+            return httpx.Response(
+                200,
+                json={
+                    "job-1": {
+                        "status": {"status_str": "success", "completed": True},
+                        "outputs": {
+                            "9": {
+                                "images": [{"filename": "loreweaver_00001_.png", "subfolder": "", "type": "output"}]
+                            }
+                        },
+                    }
+                },
+            )
+        if path == "/view":
+            seen["view_params"] = dict(request.url.params)
+            return httpx.Response(200, content=image_bytes, headers={"content-type": "image/png"})
+        return httpx.Response(404)
+
+    client = httpx.AsyncClient(transport=httpx.MockTransport(handler))
+    gen = ComfyUIImageGen(
+        ImageGenSettings(provider="comfyui", base_url=COMFYUI_API_BASE_URL, model=COMFYUI_DEFAULT_MODEL),
+        client=client,
+        poll_interval=0,
+        seed_factory=lambda: 123,
+    )
+    try:
+        data, mime = await gen.generate("a moonlit ruined church", size="513x769")
+    finally:
+        await client.aclose()
+
+    workflow = seen["workflow"]
+    assert isinstance(workflow, dict)
+    assert workflow["27"]["inputs"]["text"] == "a moonlit ruined church"
+    assert workflow["13"]["inputs"] == {"width": 512, "height": 768, "batch_size": 1}
+    assert workflow["28"]["inputs"]["unet_name"] == COMFYUI_DEFAULT_MODEL
+    assert workflow["30"]["inputs"]["clip_name"] == "qwen_3_4b_fp4_mixed.safetensors"
+    assert workflow["3"]["inputs"]["seed"] == 123
+    assert seen["view_params"] == {
+        "filename": "loreweaver_00001_.png",
+        "type": "output",
+    }
+    assert data == image_bytes
+    assert mime == "image/png"
+
+
+async def test_comfyui_imagegen_uploads_reference_and_queues_qwen_edit_workflow():
+    image_bytes = bytes.fromhex(
+        "89504e470d0a1a0a0000000d49484452000000010000000108060000001f15c489"
+        "0000000d49444154789c6360f8ffff3f0005fe02fea7a0a5810000000049454e44ae426082"
+    )
+    seen: dict[str, object] = {}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        path = request.url.path
+        if path == "/upload/image":
+            seen["upload_body"] = request.content
+            return httpx.Response(
+                200,
+                json={"name": "loreweaver-reference.png", "subfolder": "refs", "type": "input"},
+            )
+        if path == "/prompt":
+            seen["workflow"] = json.loads(request.content)["prompt"]
+            return httpx.Response(200, json={"prompt_id": "qwen-job", "node_errors": {}})
+        if path == "/history/qwen-job":
+            return httpx.Response(
+                200,
+                json={
+                    "qwen-job": {
+                        "status": {"status_str": "success", "completed": True},
+                        "outputs": {
+                            "13": {
+                                "images": [
+                                    {"filename": "loreweaver-qwen-edit_00001_.png", "type": "output"}
+                                ]
+                            }
+                        },
+                    }
+                },
+            )
+        if path == "/view":
+            seen["view_params"] = dict(request.url.params)
+            return httpx.Response(200, content=image_bytes, headers={"content-type": "image/png"})
+        return httpx.Response(404)
+
+    client = httpx.AsyncClient(transport=httpx.MockTransport(handler))
+    gen = ComfyUIImageGen(
+        ImageGenSettings(provider="comfyui", base_url=COMFYUI_API_BASE_URL, model=COMFYUI_DEFAULT_MODEL),
+        client=client,
+        poll_interval=0,
+        seed_factory=lambda: 456,
+    )
+    try:
+        data, mime = await gen.generate(
+            "a woman standing on a rainy quay",
+            size="512x512",
+            reference=image_bytes,
+            reference_mime="image/png",
+        )
+    finally:
+        await client.aclose()
+
+    workflow = seen["workflow"]
+    assert isinstance(workflow, dict)
+    assert workflow["1"]["inputs"]["image"] == "refs/loreweaver-reference.png"
+    assert workflow["3"]["inputs"]["clip_name"] == COMFYUI_REFERENCE_TEXT_ENCODER
+    assert workflow["4"]["inputs"]["vae_name"] == COMFYUI_REFERENCE_VAE
+    assert workflow["5"]["inputs"]["unet_name"] == COMFYUI_REFERENCE_MODEL
+    assert workflow["8"]["inputs"]["prompt"] == "a woman standing on a rainy quay"
+    assert workflow["8"]["inputs"]["image1"] == ["2", 0]
+    assert workflow["11"]["inputs"]["seed"] == 456
+    assert b"loreweaver-reference-" in seen["upload_body"]
+    assert seen["view_params"] == {"filename": "loreweaver-qwen-edit_00001_.png", "type": "output"}
+    assert data == image_bytes
+    assert mime == "image/png"
+
+
+async def test_comfyui_imagegen_reports_execution_errors_and_does_not_require_an_api_key():
+    def handler(request: httpx.Request) -> httpx.Response:
+        if request.url.path == "/prompt":
+            return httpx.Response(200, json={"prompt_id": "job-error"})
+        return httpx.Response(
+            200,
+            json={
+                "job-error": {
+                    "status": {"status_str": "error", "completed": True, "messages": ["missing model"]},
+                    "outputs": {},
+                }
+            },
+        )
+
+    client = httpx.AsyncClient(transport=httpx.MockTransport(handler))
+    gen = ComfyUIImageGen(
+        ImageGenSettings(provider="comfyui", base_url=COMFYUI_API_BASE_URL, model="z-image.safetensors"),
+        client=client,
+        poll_interval=0,
+    )
+    try:
+        with pytest.raises(ImageGenError) as exc:
+            await gen.generate("test")
+    finally:
+        await client.aclose()
+
+    assert exc.value.code == "imagegen_http_error"
+
+
+def test_build_imagegen_uses_local_comfyui_without_an_api_key():
+    gen = build_imagegen(Settings(imagegen=ImageGenSettings(provider="comfyui")))
+
+    assert isinstance(gen, ComfyUIImageGen)
+    assert gen._settings.base_url == COMFYUI_API_BASE_URL
+    assert gen._settings.model == COMFYUI_DEFAULT_MODEL
+    assert IMAGEGEN_PRESETS["comfyui"]["model"] == COMFYUI_DEFAULT_MODEL
